@@ -2,11 +2,53 @@
 <items version="2" >
 
     <item
-        jar="/Users/Amir/Desktop/Sample/app/build/intermediates/exploded-aar/Sample/recentimages/unspecified/jars/classes.jar"
+        jar="/Users/Amir/Desktop/Sample/sample/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/Amir/Desktop/Sample/sample/build/intermediates/pre-dexed/debug/classes-456131e0aec20881cb3e0cf98685f4ff2bb4c807.jar" />
+    </item>
+    <item
+        jar="/Users/Amir/Desktop/Sample/sample/build/intermediates/exploded-aar/Sample/recentimages/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="23.0.0"
         sha1="84393e2e2c139a09eeca4991548c1cc205248691">
-        <dex dex="/Users/Amir/Desktop/Sample/app/build/intermediates/pre-dexed/debug/classes-9133c6de63bf8c781fa9af8d6d315d8242aa289c.jar" />
+        <dex dex="/Users/Amir/Desktop/Sample/sample/build/intermediates/pre-dexed/debug/classes-ed611a07a02ccdac83bf3b06235c0fc78c6f6a8c.jar" />
+    </item>
+    <item
+        jar="/Users/Amir/Desktop/Sample/sample/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/Amir/Desktop/Sample/sample/build/intermediates/pre-dexed/debug/classes-703ba4427952063bd83873b0190aea1b1eaf03b9.jar" />
+    </item>
+    <item
+        jar="/Users/Amir/Desktop/Sample/sample/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/Amir/Desktop/Sample/sample/build/intermediates/pre-dexed/debug/classes-e5b8f9abcc380d095d39b31102d4216b00003bc7.jar" />
+    </item>
+    <item
+        jar="/Users/Amir/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/Amir/Desktop/Sample/sample/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-150c75f3c9053a354b10e5f2df01d3c98df9be18.jar" />
+    </item>
+    <item
+        jar="/Users/Amir/Desktop/Sample/sample/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/Amir/Desktop/Sample/sample/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-15b8b4a4ff6d8a4af9ff1a55eee70d348dae9372.jar" />
+    </item>
+    <item
+        jar="/Users/Amir/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/Amir/Desktop/Sample/sample/build/intermediates/pre-dexed/debug/butterknife-7.0.1-28990aca54e303c9ee41cb34438fbaa450427f36.jar" />
     </item>
 
 </items>
