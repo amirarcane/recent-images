@@ -11,7 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57e62eb9-ae13-4234-b7ec-dcfff09ebf06" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/Screenshot_2015-10-31-15-40-49.jpeg" afterPath="$PROJECT_DIR$/demo/Screenshot_2015-10-31-15-40-49.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/Screenshot_2015-10-31-15-40-49.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/Screenshot_2015-10-31-15-40-49.jpeg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Sample.iws" />
@@ -3080,7 +3081,13 @@
       <option name="project" value="LOCAL" />
       <updated>1446293929681</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="screenshot resized">
+      <created>1446294142380</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1446294142380</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3122,7 +3129,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changing name to sample" />
     <MESSAGE value="screenshot and apk added" />
-    <option name="LAST_COMMIT_MESSAGE" value="screenshot and apk added" />
+    <MESSAGE value="screenshot resized" />
+    <option name="LAST_COMMIT_MESSAGE" value="screenshot resized" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
