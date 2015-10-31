@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Amir/Desktop/Sample/app/build/intermediates/exploded-aar/Sample/recentimages/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="84393e2e2c139a09eeca4991548c1cc205248691">
+        <dex dex="/Users/Amir/Desktop/Sample/app/build/intermediates/pre-dexed/debug/classes-9133c6de63bf8c781fa9af8d6d315d8242aa289c.jar" />
+    </item>
+
+</items>
