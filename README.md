@@ -14,7 +14,17 @@ You can download the latest sample APK from this repo here: https://github.com/a
 Watching this repository will allow GitHub to email you whenever I publish a release.
 
 ---
+# Gradle Dependency
+
+Add this line to your project `build.gradle`
+
+```java
+compile 'com.amirarcane:recentimages:1.0.0'
+```
+---
 # Usage
+
+Just these lines to your class, that's it.
 
 ```java
 RecentImages ri = new RecentImages();
@@ -24,7 +34,7 @@ ImageAdapter adapter = ri.getAdapter(MainActivity.this);
 based on `Date_Taken` and `Descending` order, for changing them see [Customization](https://github.com/amirarcane/recent-images/#customization)
 
 You can use regular gridview but if you want to use it exactly like above picture you need horizontal gridview.
-I used jess-anders/two-way-gridview in this library. All you should do is set below code in your xml instaed of regular gridview:
+I used jess-anders/two-way-gridview in this library. All you have to do is set below code in your xml instaed of regular gridview:
 
 ```xml
 
