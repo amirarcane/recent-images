@@ -16,7 +16,7 @@ Watching this repository will allow GitHub to email you whenever I publish a rel
 ---
 # Gradle Dependency
 
-Add this line to your project `build.gradle`
+Add this line to your `build.gradle` project
 
 ```java
 compile 'com.amirarcane.recent-images:recentimages:1.0.0'
@@ -24,7 +24,7 @@ compile 'com.amirarcane.recent-images:recentimages:1.0.0'
 ---
 # Usage
 
-Just these lines to your class, that's it.
+Just add these lines to your class, that's it.
 
 ```java
 RecentImages ri = new RecentImages();
