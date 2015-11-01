@@ -2,8 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.0"
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.0"
@@ -27,10 +25,32 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.1'
 }
 
-def siteUrl = 'https://github.com/amirarcane/recent-images'      // Homepage URL of the library
-def gitUrl = 'https://github.com/amirarcane/recent-images.git'   // Git repository URL
-group = "recentimages"                                        // Maven Group ID for the artifact
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'recentimages'
 
+    publishedGroupId = 'com.amirarcane.recent-images'
+    libraryName = 'recentimages'
+    artifact = 'recentimages'
+
+    libraryDescription = 'Simplest way to get device all images based on date taken, name, id and other customization'
+
+    siteUrl = 'https://github.com/amirarcane/recent-images'
+    gitUrl = 'https://github.com/amirarcane/recent-images.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'amirarcane'
+    developerName = 'Amirhossein Naghshzan'
+    developerEmail = 'n.naghshzan@gmail.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://github.com/amirarcane/recent-images/blob/master/LICENSE.txt'
+    allLicenses = ["MIT"]
+}
+
+
+group = publishedGroupId                               // Maven Group ID for the artifact
 
 install {
     repositories.mavenInstaller {
@@ -38,23 +58,26 @@ install {
         pom {
             project {
                 packaging 'aar'
+                groupId publishedGroupId
+                artifactId artifact
 
                 // Add your description here
-                name 'recentimages'
+                name libraryName
+                description libraryDescription
                 url siteUrl
 
                 // Set your license
                 licenses {
                     license {
-                        name 'MIT'
-                        url 'https://github.com/amirarcane/recent-images/blob/master/LICENSE.txt'
+                        name licenseName
+                        url licenseUrl
                     }
                 }
                 developers {
                     developer {
-                        id 'amirarcane'
-                        name 'Amirhossein Naghshzan'
-                        email 'n.naghshzan@gmail.com'
+                        id developerId
+                        name developerName
+                        email developerEmail
                     }
                 }
                 scm {
@@ -68,15 +91,28 @@ install {
     }
 }
 
+version = libraryVersion
+
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
 
+task javadoc(type: Javadoc) {
+    //source = android.sourceSets.main.java.srcDirs
+   //classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
 artifacts {
+    archives javadocJar
     archives sourcesJar
 }
 
+// Bintray
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
@@ -86,11 +122,16 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = "maven"
-        name = "recentimages"
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
         websiteUrl = siteUrl
         vcsUrl = gitUrl
-        licenses = ["MIT"]
+        licenses = allLicenses
         publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+        }
     }
 }
