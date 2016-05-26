@@ -1,3 +1,4 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-recent--images-green.svg?style=true)](https://android-arsenal.com/details/1/3622)
 # recent-images
 
 Simplest way to get device all images based on date taken, name, id and other customization
