@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         minSdkVersion 8
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0.0"
     }
@@ -33,7 +33,7 @@ ext {
     libraryName = 'recentimages'
     artifact = 'recentimages'
 
-    libraryDescription = 'Simplest way to get device all images based on date taken, name, id and other customization'
+    libraryDescription = 'Simple way to get all images of device based on date taken, name, id and other customization'
 
     siteUrl = 'https://github.com/amirarcane/recent-images'
     gitUrl = 'https://github.com/amirarcane/recent-images.git'
