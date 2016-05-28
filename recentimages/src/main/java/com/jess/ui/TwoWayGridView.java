@@ -1455,7 +1455,7 @@ public class TwoWayGridView extends TwoWayAbsListView {
 				break;
 
 			default:
-				int spaceLeftOver = 0;
+				int spaceLeftOver;
 				switch (stretchMode) {
 				case STRETCH_COLUMN_WIDTH:
 					// Stretch the columns
@@ -2951,7 +2951,7 @@ public class TwoWayGridView extends TwoWayAbsListView {
 				break;
 
 			default:
-				int spaceLeftOver = 0;
+				int spaceLeftOver;
 				switch (stretchMode) {
 				case STRETCH_COLUMN_WIDTH:
 					spaceLeftOver = availableSpace - (mNumRows * requestedRowHeight) -
