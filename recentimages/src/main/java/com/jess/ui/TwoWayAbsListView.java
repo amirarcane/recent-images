@@ -7,7 +7,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-	2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -194,6 +194,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	 * @see #setScrollDirectionLandscape(int)
 	 */
 	static final int SCROLL_HORIZONTAL = 1;
+	public static final String CONSISTENCY = "Consistency";
 
 
 	/**
@@ -2991,7 +2992,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			for (int i = 0; i < count; i++) {
 				if (activeViews[i] != null) {
 					result = false;
-					Log.d("Consistency",
+					Log.d(CONSISTENCY,
 							"AbsListView " + this + " has a view in its active recycler: " +
 							activeViews[i]);
 				}
@@ -3019,12 +3020,12 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			final View view = scrap.get(i);
 			if (view.getParent() != null) {
 				result = false;
-				Log.d("Consistency", "TwoWayAbsListView " + this +
+				Log.d(CONSISTENCY, "TwoWayAbsListView " + this +
 						" has a view in its scrap heap still attached to a parent: " + view);
 			}
 			if (indexOfChild(view) >= 0) {
 				result = false;
-				Log.d("Consistency", "TwoWayAbsListView " + this +
+				Log.d(CONSISTENCY, "TwoWayAbsListView " + this +
 						" has a view in its scrap heap that is also a direct child: " + view);
 			}
 		}
