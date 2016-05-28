@@ -20,7 +20,7 @@ Watching this repository will allow GitHub to email you whenever I publish a rel
 Add this line to your `build.gradle` project
 
 ```java
-compile 'com.amirarcane.recent-images:recentimages:1.0.0'
+compile 'com.amirarcane.recent-images:recentimages:1.0.1'
 ```
 ---
 # Usage
