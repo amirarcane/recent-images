@@ -1558,7 +1558,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 
 	@Override
 	protected void dispatchDraw(Canvas canvas) {
-		int saveCount = 0;
 		//TODO????
 		/*
         final boolean clipToPadding = (mGroupFlags & CLIP_TO_PADDING_MASK) == CLIP_TO_PADDING_MASK;
@@ -3742,7 +3741,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				final int firstPos = mFirstPosition;
 				final int lastPos = firstPos + getChildCount() - 1;
 
-				int viewTravelCount = 0;
+				int viewTravelCount;
 				if (position <= firstPos) {
 					viewTravelCount = firstPos - position + 1;
 					mMode = MOVE_UP_POS;
@@ -3775,7 +3774,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				final int firstPos = mFirstPosition;
 				final int lastPos = firstPos + getChildCount() - 1;
 
-				int viewTravelCount = 0;
+				int viewTravelCount;
 				if (position <= firstPos) {
 					final int boundPosFromLast = lastPos - boundPosition;
 					if (boundPosFromLast < 1) {
