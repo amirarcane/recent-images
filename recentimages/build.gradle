@@ -33,7 +33,8 @@ ext {
     libraryName = 'recentimages'
     artifact = 'recentimages'
 
-    libraryDescription = 'Simple way to get all images of device based on date taken, name, id and other customization'
+    libraryDescription = 'Do you noticed the new feature of Telegram or Instagram?! They show your latest images when you try to attach or post a picture. So I developed this library the same with lots of customization.\n' +
+            'Simple way to get all images of device based on date taken, name, id and other customization.'
 
     siteUrl = 'https://github.com/amirarcane/recent-images'
     gitUrl = 'https://github.com/amirarcane/recent-images.git'
@@ -100,7 +101,7 @@ task sourcesJar(type: Jar) {
 
 task javadoc(type: Javadoc) {
     //source = android.sourceSets.main.java.srcDirs
-   //classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    //classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
