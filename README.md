@@ -8,6 +8,8 @@ Simple way to get all images of device based on date taken, name, id and other c
 
 ![Screenshots](https://raw.githubusercontent.com/amirarcane/recent-images/master/demo/Screenshot_2015-10-31-15-40-49.png)
 
+If you Watch this repository, GitHub will send you an email every time I publish an update.
+
 ---
 # Sample Project
 You can download the latest sample APK from this repo here: https://github.com/amirarcane/recent-images/blob/master/sample/sample.apk
