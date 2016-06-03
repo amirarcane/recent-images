@@ -238,10 +238,8 @@ public class ImageAdapter extends CursorAdapter {
 
 		@Override
 		public boolean equals(Object obj) {
-			if (obj != null && obj instanceof ImageLoader) {
-				if (mArgs.mUri != null) {
-					return mArgs.mUri.equals(((ImageLoader) obj).mArgs);
-				}
+			if (obj != null && obj instanceof ImageLoader && mArgs.mUri != null) {
+				return mArgs.mUri.equals(((ImageLoader) obj).mArgs);
 			}
 			return false;
 		}
