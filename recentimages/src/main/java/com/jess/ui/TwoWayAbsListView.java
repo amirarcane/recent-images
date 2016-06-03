@@ -2984,27 +2984,25 @@ ViewTreeObserver.OnTouchModeChangeListener {
 
 		final boolean checkLayout = true;
 
-		if (checkLayout) {
-			// The active recycler must be empty
-			final View[] activeViews = mRecycler.mActiveViews;
-			int count = activeViews.length;
-			for (int i = 0; i < count; i++) {
-				if (activeViews[i] != null) {
-					result = false;
-					Log.d(CONSISTENCY,
-							"AbsListView " + this + " has a view in its active recycler: " +
-							activeViews[i]);
-				}
+		// The active recycler must be empty
+		final View[] activeViews = mRecycler.mActiveViews;
+		int count = activeViews.length;
+		for (int i = 0; i < count; i++) {
+			if (activeViews[i] != null) {
+				result = false;
+				Log.d(CONSISTENCY,
+						"AbsListView " + this + " has a view in its active recycler: " +
+						activeViews[i]);
 			}
+		}
 
-			// All views in the recycler must NOT be on screen and must NOT have a parent
-			final ArrayList<View> scrap = mRecycler.mCurrentScrap;
-			if (!checkScrap(scrap)) result = false;
-			final ArrayList<View>[] scraps = mRecycler.mScrapViews;
-			count = scraps.length;
-			for (int i = 0; i < count; i++) {
-				if (!checkScrap(scraps[i])) result = false;
-			}
+		// All views in the recycler must NOT be on screen and must NOT have a parent
+		final ArrayList<View> scrap = mRecycler.mCurrentScrap;
+		if (!checkScrap(scrap)) result = false;
+		final ArrayList<View>[] scraps = mRecycler.mScrapViews;
+		count = scraps.length;
+		for (int i = 0; i < count; i++) {
+			if (!checkScrap(scraps[i])) result = false;
 		}
 
 		return result;
