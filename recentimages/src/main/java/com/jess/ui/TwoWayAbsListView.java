@@ -336,19 +336,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	boolean mScrollingCacheEnabled;
 
 	/**
-	 * Whether or not to enable the fast scroll feature on this list
-	 */
-	//boolean mFastScrollEnabled;
-
-	/**
 	 * Optional callback to notify client when scroll position has changed
 	 */
 	private OnScrollListener mOnScrollListener;
-
-	/**
-	 * Keeps track of our accessory window
-	 */
-	//PopupWindow mPopup;
 
 	/**
 	 * Used with type filter window
@@ -360,16 +350,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	 * properties.
 	 */
 	private boolean mSmoothScrollbarEnabled = true;
-
-	/**
-	 * Indicates that this view supports filtering
-	 */
-	//private boolean mTextFilterEnabled;
-
-	/**
-	 * Indicates that this view is currently displaying a filtered view of the data
-	 */
-	//private boolean mFiltered;
 
 	/**
 	 * Rectangle used for hit testing children
@@ -440,18 +420,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	 */
 	private int mLastScrollState = OnScrollListener.SCROLL_STATE_IDLE;
 
-	/**
-	 * Helper object that renders and controls the fast scroll thumb.
-	 */
-	//private FastScroller mFastScroller;
-
-	//private boolean mGlobalLayoutListenerAddedFilter;
-
 	private int mTouchSlop;
 	private float mDensityScale;
-
-	//private InputConnection mDefInputConnection;
-	//private InputConnectionWrapper mPublicInputConnection;
 
 	private Runnable mClearScrollingCache;
 	private int mMinimumVelocity;
@@ -466,10 +436,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	protected TouchHandler mTouchHandler;
 
 	final boolean[] mIsScrap = new boolean[1];
-
-	// True when the popup should be hidden because of a call to
-	// dispatchDisplayHint()
-	//private boolean mPopupHidden;
 
 	/**
 	 * ID of the active pointer. This is used to retain consistency during
@@ -536,9 +502,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		super(context);
 		initAbsListView();
 		setupScrollInfo();
-		//TypedArray a = context.obtainStyledAttributes(android.R.styleable.View);
-		//initializeScrollbars(a);
-		//a.recycle();
 	}
 
 	public TwoWayAbsListView(Context context, AttributeSet attrs) {
@@ -566,18 +529,12 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		boolean scrollingCacheEnabled = a.getBoolean(R.styleable.TwoWayAbsListView_scrollingCache, true);
 		setScrollingCacheEnabled(scrollingCacheEnabled);
 
-		//boolean useTextFilter = a.getBoolean(R.styleable.JessAbsListView_textFilterEnabled, false);
-		//setTextFilterEnabled(useTextFilter);
-
 		int transcriptMode = a.getInt(R.styleable.TwoWayAbsListView_transcriptMode,
 				TRANSCRIPT_MODE_DISABLED);
 		setTranscriptMode(transcriptMode);
 
 		int color = a.getColor(R.styleable.TwoWayAbsListView_cacheColorHint, 0);
 		setCacheColorHint(color);
-
-		//boolean enableFastScroll = a.getBoolean(R.styleable.JessAbsListView_fastScrollEnabled, false);
-		//setFastScrollEnabled(enableFastScroll);
 
 		boolean smoothScrollbar = a.getBoolean(R.styleable.TwoWayAbsListView_smoothScrollbar, true);
 		setSmoothScrollbarEnabled(smoothScrollbar);
@@ -645,45 +602,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	}
 
 	/**
-	 * Enables fast scrolling by letting the user quickly scroll through lists by
-	 * dragging the fast scroll thumb. The adapter attached to the list may want
-	 * to implement {@link SectionIndexer} if it wishes to display alphabet preview and
-	 * jump between sections of the list.
-	 * @see SectionIndexer
-	 * @see #isFastScrollEnabled()
-	 * @param enabled whether or not to enable fast scrolling
-	 */
-	/*
-    public void setFastScrollEnabled(boolean enabled) {
-        mFastScrollEnabled = enabled;
-        if (enabled) {
-            if (mFastScroller == null) {
-                mFastScroller = new FastScroller(getContext(), this);
-            }
-        } else {
-            if (mFastScroller != null) {
-                mFastScroller.stop();
-                mFastScroller = null;
-            }
-        }
-    }*/
-
-	/**
-	 * Returns the current state of the fast scroll feature.
-	 * @see #setFastScrollEnabled(boolean)
-	 * @return true if fast scroll is enabled, false otherwise
-	 */
-	/*
-    @ViewDebug.ExportedProperty
-    public boolean isFastScrollEnabled() {
-        return mFastScrollEnabled;
-    }
-
-    protected boolean isVerticalScrollBarHidden() {
-        return mFastScroller != null && mFastScroller.isVisible();
-    }*/
-
-	/**
 	 * When smooth scrollbar is enabled, the position and size of the scrollbar thumb
 	 * is computed based on the number of visible pixels in the visible items. This
 	 * however assumes that all list items have the same height. If you use a list in
@@ -731,9 +649,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	 * Notify our scroll listener (if there is one) of a change in scroll state
 	 */
 	void invokeOnItemScrollListener() {
-		//if (mFastScroller != null) {
-		//    mFastScroller.onScroll(this, mFirstPosition, getChildCount(), mItemCount);
-		//}
 		if (mOnScrollListener != null) {
 			mOnScrollListener.onScroll(this, mFirstPosition, getChildCount(), mItemCount);
 		}
@@ -772,33 +687,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		}
 		mScrollingCacheEnabled = enabled;
 	}
-
-//	/**
-//	 * Enables or disables the type filter window. If enabled, typing when
-//	 * this view has focus will filter the children to match the users input.
-//	 * Note that the {@link Adapter} used by this view must implement the
-//	 * {@link Filterable} interface.
-//	 *
-//	 * @param textFilterEnabled true to enable type filtering, false otherwise
-//	 *
-//	 * @see Filterable
-//	 */
-//	//public void setTextFilterEnabled(boolean textFilterEnabled) {
-//	//    mTextFilterEnabled = textFilterEnabled;
-//	//}
-//
-//	/**
-//	 * Indicates whether type filtering is enabled for this view
-//	 *
-//	 * @return true if type filtering is enabled, false otherwise
-//	 *
-//	 * @see #setTextFilterEnabled(boolean)
-//	 * @see Filterable
-//	 */
-//	//@ViewDebug.ExportedProperty
-//	//public boolean isTextFilterEnabled() {
-//	//    return mTextFilterEnabled;
-//	//}
 
 	@Override
 	public void getFocusedRect(Rect r) {
@@ -858,7 +746,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		int viewTop;
 		int position;
 		int height;
-		//String filter;
 
 		/**
 		 * Constructor called from {@link TwoWayAbsListView#onSaveInstanceState()}
@@ -877,7 +764,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			viewTop = in.readInt();
 			position = in.readInt();
 			height = in.readInt();
-			//filter = in.readString();
 		}
 
 		@Override
@@ -888,7 +774,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			out.writeInt(viewTop);
 			out.writeInt(position);
 			out.writeInt(height);
-			//out.writeString(filter);
 		}
 
 		@Override
@@ -900,7 +785,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			+ " viewTop=" + viewTop
 			+ " position=" + position
 			+ " height=" + height + "}";
-			//+ " filter=" + filter + "}";
 		}
 
 		public static final Parcelable.Creator<SavedState> CREATOR
@@ -923,7 +807,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		 * that happen early enough to keep from getting complaints
 		 * about having leaked the window.
 		 */
-		//dismissPopup();
 
 		Parcelable superState = super.onSaveInstanceState();
 
@@ -956,17 +839,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				ss.position = 0;
 			}
 		}
-		/*
-        ss.filter = null;
-        if (mFiltered) {
-            final EditText textFilter = mTextFilter;
-            if (textFilter != null) {
-                Editable filterText = textFilter.getText();
-                if (filterText != null) {
-                    ss.filter = filterText.toString();
-                }
-            }
-        }*/
 
 		return ss;
 	}
@@ -997,54 +869,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			mSyncMode = SYNC_FIRST_POSITION;
 		}
 
-		//setFilterText(ss.filter);
-
 		requestLayout();
 	}
-
-	//    private boolean acceptFilter() {
-	//        return mTextFilterEnabled && getAdapter() instanceof Filterable &&
-	//                ((Filterable) getAdapter()).getFilter() != null;
-	//    }
-	//
-	//    /**
-	//     * Sets the initial value for the text filter.
-	//     * @param filterText The text to use for the filter.
-	//     *
-	//     * @see #setTextFilterEnabled
-	//     */
-	//    public void setFilterText(String filterText) {
-	//        // TODO: Should we check for acceptFilter()?
-	//        if (mTextFilterEnabled && !TextUtils.isEmpty(filterText)) {
-	//            createTextFilter(false);
-	//            // This is going to call our listener onTextChanged, but we might not
-	//            // be ready to bring up a window yet
-	//            mTextFilter.setText(filterText);
-	//            mTextFilter.setSelection(filterText.length());
-	//            if (mAdapter instanceof Filterable) {
-	//                // if mPopup is non-null, then onTextChanged will do the filtering
-	//                if (mPopup == null) {
-	//                    Filter f = ((Filterable) mAdapter).getFilter();
-	//                    f.filter(filterText);
-	//                }
-	//                // Set filtered to true so we will display the filter window when our main
-	//                // window is ready
-	//                mFiltered = true;
-	//                mDataSetObserver.clearSavedState();
-	//            }
-	//        }
-	//    }
-	//
-	//    /**
-	//     * Returns the list's text filter, if available.
-	//     * @return the list's text filter or null if filtering isn't enabled
-	//     */
-	//    public CharSequence getTextFilter() {
-	//        if (mTextFilterEnabled && mTextFilter != null) {
-	//            return mTextFilter.getText();
-	//        }
-	//        return null;
-	//    }
 
 	@Override
 	protected void onFocusChanged(boolean gainFocus, int direction, Rect previouslyFocusedRect) {
@@ -1333,23 +1159,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		mInLayout = false;
 	}
 
-	/*
-    protected boolean setFrame(int left, int top, int right, int bottom) {
-        final boolean changed = super.setFrame(left, top, right, bottom);
-
-        if (changed) {
-            // Reposition the popup when the frame has changed. This includes
-            // translating the widget, not just changing its dimension. The
-            // filter popup needs to follow the widget.
-            final boolean visible = getWindowVisibility() == View.VISIBLE;
-            if (mFiltered && visible && mPopup != null && mPopup.isShowing()) {
-                positionPopup();
-            }
-        }
-
-        return changed;
-    }*/
-
 	/**
 	 * Subclasses must override this method to layout their children.
 	 */
@@ -1559,19 +1368,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 
 	@Override
 	protected void dispatchDraw(Canvas canvas) {
-		//TODO????
-		/*
-        final boolean clipToPadding = (mGroupFlags & CLIP_TO_PADDING_MASK) == CLIP_TO_PADDING_MASK;
-        if (clipToPadding) {
-            saveCount = canvas.save();
-            final int scrollX = getScrollX();
-            final int scrollY = getScrollY();
-            canvas.clipRect(scrollX + getPaddingLeft(), scrollY + getPaddingTop(),
-                    scrollX + getRight() - getLeft() - getPaddingRight(),
-                    scrollY + getBottom() - getTop() - getPaddingBottom());
-            mGroupFlags &= ~CLIP_TO_PADDING_MASK;
-        }*/
-
 		final boolean drawSelectorOnTop = mDrawSelectorOnTop;
 		if (!drawSelectorOnTop) {
 			drawSelector(canvas);
@@ -1582,11 +1378,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		if (drawSelectorOnTop) {
 			drawSelector(canvas);
 		}
-		/*
-        if (clipToPadding) {
-            canvas.restoreToCount(saveCount);
-            mGroupFlags |= CLIP_TO_PADDING_MASK;
-        }*/
 	}
 
 	@Override
@@ -1595,10 +1386,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			mDataChanged = true;
 			rememberSyncState();
 		}
-
-		//if (mFastScroller != null) {
-		//    mFastScroller.onSizeChanged(w, h, oldw, oldh);
-		//}
 	}
 
 	/**
@@ -1788,10 +1575,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		final ViewTreeObserver treeObserver = getViewTreeObserver();
 		if (treeObserver != null) {
 			treeObserver.addOnTouchModeChangeListener(this);
-			/*
-            if (mTextFilterEnabled && mPopup != null && !mGlobalLayoutListenerAddedFilter) {
-                treeObserver.addOnGlobalLayoutListener(this);
-            }*/
 		}
 	}
 
@@ -1799,20 +1582,12 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 
-		// Dismiss the popup in case onSaveInstanceState() was not invoked
-		//dismissPopup();
-
 		// Detach any view left in the scrap heap
 		mRecycler.clear();
 
 		final ViewTreeObserver treeObserver = getViewTreeObserver();
 		if (treeObserver != null) {
 			treeObserver.removeOnTouchModeChangeListener(this);
-			/*
-            if (mTextFilterEnabled && mPopup != null) {
-                treeObserver.removeGlobalOnLayoutListener(this);
-                mGlobalLayoutListenerAddedFilter = false;
-            }*/
 		}
 	}
 
@@ -2102,15 +1877,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	public boolean onTouchEvent(MotionEvent ev) {
 		return mTouchHandler.onTouchEvent(ev);
 	}
-
-	/*
-    @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-        if (mFastScroller != null) {
-            mFastScroller.draw(canvas);
-        }
-    }*/
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -2444,62 +2210,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		checkSelectionChanged();
 	}
 
-
-	//    @Override
-	//    protected void onDisplayHint(int hint) {
-	//        super.onDisplayHint(hint);
-	//        switch (hint) {
-	//            case INVISIBLE:
-	//                if (mPopup != null && mPopup.isShowing()) {
-	//                    dismissPopup();
-	//                }
-	//                break;
-	//            case VISIBLE:
-	//                if (mFiltered && mPopup != null && !mPopup.isShowing()) {
-	//                    showPopup();
-	//                }
-	//                break;
-	//        }
-	//        mPopupHidden = hint == INVISIBLE;
-	//    }
-	//
-	//    /**
-	//     * Removes the filter window
-	//     */
-	//    private void dismissPopup() {
-	//        if (mPopup != null) {
-	//            mPopup.dismiss();
-	//        }
-	//    }
-	//
-	//    /**
-	//     * Shows the filter window
-	//     */
-	//    private void showPopup() {
-	//        // Make sure we have a window before showing the popup
-	//        if (getWindowVisibility() == View.VISIBLE) {
-	//            createTextFilter(true);
-	//            positionPopup();
-	//            // Make sure we get focus if we are showing the popup
-	//            checkFocus();
-	//        }
-	//    }
-	//
-	//    private void positionPopup() {
-	//        int screenHeight = getResources().getDisplayMetrics().heightPixels;
-	//        final int[] xy = new int[2];
-	//        getLocationOnScreen(xy);
-	//        // TODO: The 20 below should come from the theme
-	//        // TODO: And the gravity should be defined in the theme as well
-	//        final int bottomGap = screenHeight - xy[1] - getHeight() + (int) (mDensityScale * 20);
-	//        if (!mPopup.isShowing()) {
-	//            mPopup.showAtLocation(this, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL,
-	//                    xy[0], bottomGap);
-	//        } else {
-	//            mPopup.update(xy[0], bottomGap, -1, -1);
-	//        }
-	//    }
-
 	/**
 	 * What is the distance between the source and destination rectangles given the direction of
 	 * focus navigation between them? The direction basically helps figure out more quickly what is
@@ -2554,272 +2264,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		int deltaY = dY - sY;
 		return deltaY * deltaY + deltaX * deltaX;
 	}
-
-	//    @Override
-	//    protected boolean isInFilterMode() {
-	//        return mFiltered;
-	//    }
-	//
-	//    /**
-	//     * Sends a key to the text filter window
-	//     *
-	//     * @param keyCode The keycode for the event
-	//     * @param event The actual key event
-	//     *
-	//     * @return True if the text filter handled the event, false otherwise.
-	//     */
-	//    boolean sendToTextFilter(int keyCode, int count, KeyEvent event) {
-	//        if (!acceptFilter()) {
-	//            return false;
-	//        }
-	//
-	//        boolean handled = false;
-	//        boolean okToSend = true;
-	//        switch (keyCode) {
-	//        case KeyEvent.KEYCODE_DPAD_UP:
-	//        case KeyEvent.KEYCODE_DPAD_DOWN:
-	//        case KeyEvent.KEYCODE_DPAD_LEFT:
-	//        case KeyEvent.KEYCODE_DPAD_RIGHT:
-	//        case KeyEvent.KEYCODE_DPAD_CENTER:
-	//        case KeyEvent.KEYCODE_ENTER:
-	//            okToSend = false;
-	//            break;
-	//        case KeyEvent.KEYCODE_BACK:
-	//            if (mFiltered && mPopup != null && mPopup.isShowing()) {
-	//                if (event.getAction() == KeyEvent.ACTION_DOWN
-	//                        && event.getRepeatCount() == 0) {
-	//                    getKeyDispatcherState().startTracking(event, this);
-	//                    handled = true;
-	//                } else if (event.getAction() == KeyEvent.ACTION_UP
-	//                        && event.isTracking() && !event.isCanceled()) {
-	//                    handled = true;
-	//                    mTextFilter.setText("");
-	//                }
-	//            }
-	//            okToSend = false;
-	//            break;
-	//        case KeyEvent.KEYCODE_SPACE:
-	//            // Only send spaces once we are filtered
-	//            okToSend = mFiltered;
-	//            break;
-	//        }
-	//
-	//        if (okToSend) {
-	//            createTextFilter(true);
-	//
-	//            KeyEvent forwardEvent = event;
-	//            if (forwardEvent.getRepeatCount() > 0) {
-	//                forwardEvent = KeyEvent.changeTimeRepeat(event, event.getEventTime(), 0);
-	//            }
-	//
-	//            int action = event.getAction();
-	//            switch (action) {
-	//                case KeyEvent.ACTION_DOWN:
-	//                    handled = mTextFilter.onKeyDown(keyCode, forwardEvent);
-	//                    break;
-	//
-	//                case KeyEvent.ACTION_UP:
-	//                    handled = mTextFilter.onKeyUp(keyCode, forwardEvent);
-	//                    break;
-	//
-	//                case KeyEvent.ACTION_MULTIPLE:
-	//                    handled = mTextFilter.onKeyMultiple(keyCode, count, event);
-	//                    break;
-	//            }
-	//        }
-	//        return handled;
-	//    }
-	//
-	//    /**
-	//     * Return an InputConnection for editing of the filter text.
-	//     */
-	//    @Override
-	//    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-	//        if (isTextFilterEnabled()) {
-	//            // XXX we need to have the text filter created, so we can get an
-	//            // InputConnection to proxy to.  Unfortunately this means we pretty
-	//            // much need to make it as soon as a list view gets focus.
-	//            createTextFilter(false);
-	//            if (mPublicInputConnection == null) {
-	//                mDefInputConnection = new BaseInputConnection(this, false);
-	//                mPublicInputConnection = new InputConnectionWrapper(
-	//                        mTextFilter.onCreateInputConnection(outAttrs), true) {
-	//                    @Override
-	//                    public boolean reportFullscreenMode(boolean enabled) {
-	//                        // Use our own input connection, since it is
-	//                        // the "real" one the IME is talking with.
-	//                        return mDefInputConnection.reportFullscreenMode(enabled);
-	//                    }
-	//
-	//                    @Override
-	//                    public boolean performEditorAction(int editorAction) {
-	//                        // The editor is off in its own window; we need to be
-	//                        // the one that does this.
-	//                        if (editorAction == EditorInfo.IME_ACTION_DONE) {
-	//                            InputMethodManager imm = (InputMethodManager)
-	//                                    getContext().getSystemService(
-	//                                            Context.INPUT_METHOD_SERVICE);
-	//                            if (imm != null) {
-	//                                imm.hideSoftInputFromWindow(getWindowToken(), 0);
-	//                            }
-	//                            return true;
-	//                        }
-	//                        return false;
-	//                    }
-	//
-	//                    @Override
-	//                    public boolean sendKeyEvent(KeyEvent event) {
-	//                        // Use our own input connection, since the filter
-	//                        // text view may not be shown in a window so has
-	//                        // no ViewRoot to dispatch events with.
-	//                        return mDefInputConnection.sendKeyEvent(event);
-	//                    }
-	//                };
-	//            }
-	//            outAttrs.inputType = EditorInfo.TYPE_CLASS_TEXT
-	//                    | EditorInfo.TYPE_TEXT_VARIATION_FILTER;
-	//            outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
-	//            return mPublicInputConnection;
-	//        }
-	//        return null;
-	//    }
-	//
-	//    /**
-	//     * For filtering we proxy an input connection to an internal text editor,
-	//     * and this allows the proxying to happen.
-	//     */
-	//
-	//    @Override
-	//    public boolean checkInputConnectionProxy(View view) {
-	//        return view == mTextFilter;
-	//    }
-	//
-	//    /**
-	//     * Creates the window for the text filter and populates it with an EditText field;
-	//     *
-	//     * @param animateEntrance true if the window should appear with an animation
-	//     */
-	//    /*
-	//    private void createTextFilter(boolean animateEntrance) {
-	//        if (mPopup == null) {
-	//            Context c = getContext();
-	//            PopupWindow p = new PopupWindow(c);
-	//            LayoutInflater layoutInflater = (LayoutInflater)
-	//                    c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	//            mTextFilter = (EditText) layoutInflater.inflate(
-	//                    android.R.layout.typing_filter, null);
-	//            // For some reason setting this as the "real" input type changes
-	//            // the text view in some way that it doesn't work, and I don't
-	//            // want to figure out why this is.
-	//            mTextFilter.setRawInputType(EditorInfo.TYPE_CLASS_TEXT
-	//                    | EditorInfo.TYPE_TEXT_VARIATION_FILTER);
-	//            mTextFilter.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
-	//            mTextFilter.addTextChangedListener(this);
-	//            p.setFocusable(false);
-	//            p.setTouchable(false);
-	//            p.setInputMethodMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
-	//            p.setContentView(mTextFilter);
-	//            p.setWidth(LayoutParams.WRAP_CONTENT);
-	//            p.setHeight(LayoutParams.WRAP_CONTENT);
-	//            p.setBackgroundDrawable(null);
-	//            mPopup = p;
-	//            getViewTreeObserver().addOnGlobalLayoutListener(this);
-	//            mGlobalLayoutListenerAddedFilter = true;
-	//        }
-	//        if (animateEntrance) {
-	//            mPopup.setAnimationStyle(R.style.Animation_TypingFilter);
-	//        } else {
-	//            mPopup.setAnimationStyle(R.style.Animation_TypingFilterRestore);
-	//        }
-	//    }*/
-	//
-	//    /**
-	//     * Clear the text filter.
-	//     */
-	//    /*
-	//    public void clearTextFilter() {
-	//        if (mFiltered) {
-	//            mTextFilter.setText("");
-	//            mFiltered = false;
-	//            if (mPopup != null && mPopup.isShowing()) {
-	//                dismissPopup();
-	//            }
-	//        }
-	//    }*/
-	//
-	//    /**
-	//     * Returns if the ListView currently has a text filter.
-	//     */
-	//    public boolean hasTextFilter() {
-	//        return mFiltered;
-	//    }
-	//
-	//    public void onGlobalLayout() {
-	//        if (isShown()) {
-	//            // Show the popup if we are filtered
-	//            if (mFiltered && mPopup != null && !mPopup.isShowing() && !mPopupHidden) {
-	//                showPopup();
-	//            }
-	//        } else {
-	//            // Hide the popup when we are no longer visible
-	//            if (mPopup != null && mPopup.isShowing()) {
-	//                dismissPopup();
-	//            }
-	//        }
-	//
-	//    }
-	//
-	//    /**
-	//     * For our text watcher that is associated with the text filter.  Does
-	//     * nothing.
-	//     */
-	//    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	//    }
-	//
-	//    /**
-	//     * For our text watcher that is associated with the text filter. Performs
-	//     * the actual filtering as the text changes, and takes care of hiding and
-	//     * showing the popup displaying the currently entered filter text.
-	//     */
-	//    public void onTextChanged(CharSequence s, int start, int before, int count) {
-	//        if (mPopup != null && isTextFilterEnabled()) {
-	//            int length = s.length();
-	//            boolean showing = mPopup.isShowing();
-	//            if (!showing && length > 0) {
-	//                // Show the filter popup if necessary
-	//                showPopup();
-	//                mFiltered = true;
-	//            } else if (showing && length == 0) {
-	//                // Remove the filter popup if the user has cleared all text
-	//                dismissPopup();
-	//                mFiltered = false;
-	//            }
-	//            if (mAdapter instanceof Filterable) {
-	//                Filter f = ((Filterable) mAdapter).getFilter();
-	//                // Filter should not be null when we reach this part
-	//                if (f != null) {
-	//                    f.filter(s, this);
-	//                } else {
-	//                    throw new IllegalStateException("You cannot call onTextChanged with a non "
-	//                            + "filterable adapter");
-	//                }
-	//            }
-	//        }
-	//    }
-	//
-	//    /**
-	//     * For our text watcher that is associated with the text filter.  Does
-	//     * nothing.
-	//     */
-	//    public void afterTextChanged(Editable s) {
-	//    }
-	//
-	//    public void onFilterComplete(int count) {
-	//        if (mSelectedPosition < 0 && count > 0) {
-	//            mResurrectToPosition = INVALID_POSITION;
-	//            resurrectSelection();
-	//        }
-	//    }
 
 	@Override
 	protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
@@ -3473,19 +2917,12 @@ ViewTreeObserver.OnTouchModeChangeListener {
 						invalidate();
 					}
 				}
-				// Always hide the type filter
-				//dismissPopup();
 
 				if (touchMode == TOUCH_MODE_OFF) {
 					// Remember the last selected element
 					mResurrectToPosition = mSelectedPosition;
 				}
 			} else {
-				//if (mFiltered && !mPopupHidden) {
-				// Show the type filter only if a filter is in effect
-				//    showPopup();
-				//}
-
 				// If we changed touch mode since the last time we had focus
 				if (touchMode != mLastTouchMode && mLastTouchMode != TOUCH_MODE_UNKNOWN) {
 					// If we come back in trackball mode, we bring the selection back
@@ -3868,14 +3305,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				return isClickable() || isLongClickable();
 			}
 
-			/*
-            if (mFastScroller != null) {
-                boolean intercepted = mFastScroller.onTouchEvent(ev);
-                if (intercepted) {
-                    return true;
-                }
-            }*/
-
 			final int action = ev.getAction();
 
 			View v;
@@ -4142,14 +3571,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			int action = ev.getAction();
 			View v;
 
-			/*
-            if (mFastScroller != null) {
-                boolean intercepted = mFastScroller.onInterceptTouchEvent(ev);
-                if (intercepted) {
-                    return true;
-                }
-            }*/
-
 			switch (action) {
 				case MotionEvent.ACTION_DOWN: {
 					int touchMode = mTouchMode;
@@ -4340,7 +3761,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			mBlockLayoutRequests = false;
 
 			invokeOnItemScrollListener();
-			//awakenScrollBars();
 
 			return false;
 		}
@@ -4841,14 +4261,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				return isClickable() || isLongClickable();
 			}
 
-			/*
-            if (mFastScroller != null) {
-                boolean intercepted = mFastScroller.onTouchEvent(ev);
-                if (intercepted) {
-                    return true;
-                }
-            }*/
-
 			final int action = ev.getAction();
 
 			View v;
@@ -5341,7 +4753,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			mBlockLayoutRequests = false;
 
 			invokeOnItemScrollListener();
-			//awakenScrollBars();
 			if (DEBUG) Log.i(TAG, "trackScrollMotion returning false - mFirstPosition: " + mFirstPosition);
 			return false;
 		}
