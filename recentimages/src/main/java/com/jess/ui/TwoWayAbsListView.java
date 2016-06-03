@@ -853,6 +853,17 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	}
 
 	static class SavedState extends BaseSavedState {
+		public static final Parcelable.Creator<SavedState> CREATOR
+				= new Parcelable.Creator<SavedState>() {
+			public SavedState createFromParcel(Parcel in) {
+				return new SavedState(in);
+			}
+
+			public SavedState[] newArray(int size) {
+				return new SavedState[size];
+			}
+		};
+
 		long selectedId;
 		long firstId;
 		int viewTop;
@@ -902,17 +913,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			+ " height=" + height + "}";
 			//+ " filter=" + filter + "}";
 		}
-
-		public static final Parcelable.Creator<SavedState> CREATOR
-		= new Parcelable.Creator<SavedState>() {
-			public SavedState createFromParcel(Parcel in) {
-				return new SavedState(in);
-			}
-
-			public SavedState[] newArray(int size) {
-				return new SavedState[size];
-			}
-		};
 	}
 
 	@Override
@@ -3678,17 +3678,16 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			protected final Scroller mScroller;
 
 			protected Runnable mCheckFlywheel;
-			
+
+			FlingRunnable() {
+				mScroller = new Scroller(getContext());
+			}
+
 			public boolean isScrollingInDirection(float xvel, float yvel) {
 				final int dx = mScroller.getFinalX() - mScroller.getStartX();
 				final int dy = mScroller.getFinalY() - mScroller.getStartY();
 				return !mScroller.isFinished() && Math.signum(xvel) == Math.signum(dx) &&
 						Math.signum(yvel) == Math.signum(dy);
-			}
-
-
-			FlingRunnable() {
-				mScroller = new Scroller(getContext());
 			}
 
 			abstract void flywheelTouch();
@@ -4469,6 +4468,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		 *
 		 */
 		private class VerticalFlingRunnable extends FlingRunnable {
+			private static final int FLYWHEEL_TIMEOUT = 40; // milliseconds
 			/**
 			 * Y value reported by mScroller on the previous fling
 			 */
@@ -4562,8 +4562,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				}
 
 			}
-			
-			private static final int FLYWHEEL_TIMEOUT = 40; // milliseconds
 			
 			public void flywheelTouch() {
 				if(mCheckFlywheel == null) {
@@ -5354,6 +5352,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		 *
 		 */
 		private class HorizontalFlingRunnable extends FlingRunnable {
+			private static final int FLYWHEEL_TIMEOUT = 40; // milliseconds
 			/**
 			 * X value reported by mScroller on the previous fling
 			 */
@@ -5448,9 +5447,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 
 			}
 			
-			
-			private static final int FLYWHEEL_TIMEOUT = 40; // milliseconds
-	
 			public void flywheelTouch() {
 				if(mCheckFlywheel == null) {
 					mCheckFlywheel = new Runnable() {

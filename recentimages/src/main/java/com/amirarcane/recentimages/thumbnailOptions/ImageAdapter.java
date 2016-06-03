@@ -287,13 +287,6 @@ public class ImageAdapter extends CursorAdapter {
 		private final PoolWorker[] mThreads;
 		protected final LinkedList<ImageLoader> mQueue;
 
-		public static synchronized WorkQueue getInstance() {
-			if (sInstance == null) {
-				sInstance = new WorkQueue(NUM_OF_THREADS);
-			}
-			return sInstance;
-		}
-
 		private WorkQueue(int nThreads) {
 			mNumOfThreads = nThreads;
 			mQueue = new LinkedList<ImageLoader>();
@@ -303,6 +296,13 @@ public class ImageAdapter extends CursorAdapter {
 				mThreads[i] = new PoolWorker();
 				mThreads[i].start();
 			}
+		}
+
+		public static synchronized WorkQueue getInstance() {
+			if (sInstance == null) {
+				sInstance = new WorkQueue(NUM_OF_THREADS);
+			}
+			return sInstance;
 		}
 
 		public void execute(ImageLoader r) {

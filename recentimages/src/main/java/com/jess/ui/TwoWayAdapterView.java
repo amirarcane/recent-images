@@ -417,12 +417,6 @@ public abstract class TwoWayAdapterView<T extends Adapter> extends ViewGroup {
 	 */
 	public static class AdapterContextMenuInfo implements ContextMenu.ContextMenuInfo {
 
-		public AdapterContextMenuInfo(View targetView, int position, long id) {
-			this.targetView = targetView;
-			this.position = position;
-			this.id = id;
-		}
-
 		/**
 		 * The child view for which the context menu is being displayed. This
 		 * will be one of the children of this AdapterView.
@@ -439,6 +433,12 @@ public abstract class TwoWayAdapterView<T extends Adapter> extends ViewGroup {
 		 * The row id of the item for which the context menu is being displayed.
 		 */
 		public long id;
+
+		public AdapterContextMenuInfo(View targetView, int position, long id) {
+			this.targetView = targetView;
+			this.position = position;
+			this.id = id;
+		}
 	}
 
 	/**
