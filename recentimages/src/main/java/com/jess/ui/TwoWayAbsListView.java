@@ -1363,11 +1363,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			canScrollUp = mFirstPosition > 0;
 
 			// ... Or top of 0th element is not visible
-			if (!canScrollUp) {
-				if (getChildCount() > 0) {
-					View child = getChildAt(0);
-					canScrollUp = child.getTop() < mListPadding.top;
-				}
+			if (!canScrollUp && getChildCount() > 0) {
+				View child = getChildAt(0);
+				canScrollUp = child.getTop() < mListPadding.top;
 			}
 
 			mScrollUp.setVisibility(canScrollUp ? View.VISIBLE : View.INVISIBLE);
@@ -1395,11 +1393,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 			canScrollLeft = mFirstPosition > 0;
 
 			// ... Or top of 0th element is not visible
-			if (!canScrollLeft) {
-				if (getChildCount() > 0) {
-					View child = getChildAt(0);
-					canScrollLeft = child.getLeft() < mListPadding.left;
-				}
+			if (!canScrollLeft && getChildCount() > 0) {
+				View child = getChildAt(0);
+				canScrollLeft = child.getLeft() < mListPadding.left;
 			}
 
 			mScrollLeft.setVisibility(canScrollLeft ? View.VISIBLE : View.INVISIBLE);
@@ -2148,11 +2144,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	 * @param newState The new scroll state.
 	 */
 	void reportScrollStateChange(int newState) {
-		if (newState != mLastScrollState) {
-			if (mOnScrollListener != null) {
-				mOnScrollListener.onScrollStateChanged(this, newState);
-				mLastScrollState = newState;
-			}
+		if (newState != mLastScrollState && mOnScrollListener != null) {
+			mOnScrollListener.onScrollStateChanged(this, newState);
+			mLastScrollState = newState;
 		}
 	}
 
@@ -3560,11 +3554,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 		 * @param newState The new scroll state.
 		 */
 		void reportScrollStateChange(int newState) {
-			if (newState != mLastScrollState) {
-				if (mOnScrollListener != null) {
-					mOnScrollListener.onScrollStateChanged(TwoWayAbsListView.this, newState);
-					mLastScrollState = newState;
-				}
+			if (newState != mLastScrollState && mOnScrollListener != null) {
+				mOnScrollListener.onScrollStateChanged(TwoWayAbsListView.this, newState);
+				mLastScrollState = newState;
 			}
 		}
 
@@ -3945,11 +3937,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 					startScrollIfNeeded(deltaY);
 					break;
 				case TOUCH_MODE_SCROLL:
-					if (PROFILE_SCROLLING) {
-						if (!mScrollProfilingStarted) {
-							Debug.startMethodTracing("JessAbsListViewScroll");
-							mScrollProfilingStarted = true;
-						}
+					if (PROFILE_SCROLLING && !mScrollProfilingStarted) {
+						Debug.startMethodTracing("JessAbsListViewScroll");
+						mScrollProfilingStarted = true;
 					}
 
 					if (y != mLastY) {
@@ -4098,11 +4088,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 
 				mActivePointerId = INVALID_POINTER;
 
-				if (PROFILE_SCROLLING) {
-					if (mScrollProfilingStarted) {
-						Debug.stopMethodTracing();
-						mScrollProfilingStarted = false;
-					}
+				if (PROFILE_SCROLLING && mScrollProfilingStarted) {
+					Debug.stopMethodTracing();
+					mScrollProfilingStarted = false;
 				}
 				break;
 			}
@@ -4483,11 +4471,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				mTouchMode = TOUCH_MODE_FLING;
 				post(this);
 
-				if (PROFILE_FLINGING) {
-					if (!mFlingProfilingStarted) {
-						Debug.startMethodTracing("AbsListViewFling");
-						mFlingProfilingStarted = true;
-					}
+				if (PROFILE_FLINGING && !mFlingProfilingStarted) {
+					Debug.startMethodTracing("AbsListViewFling");
+					mFlingProfilingStarted = true;
 				}
 			}
 
@@ -4550,11 +4536,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 					} else {
 						endFling();
 
-						if (PROFILE_FLINGING) {
-							if (mFlingProfilingStarted) {
-								Debug.stopMethodTracing();
-								mFlingProfilingStarted = false;
-							}
+						if (PROFILE_FLINGING && mFlingProfilingStarted) {
+							Debug.stopMethodTracing();
+							mFlingProfilingStarted = false;
 						}
 					}
 					break;
@@ -4918,11 +4902,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 						startScrollIfNeeded(deltaX);
 						break;
 					case TOUCH_MODE_SCROLL:
-						if (PROFILE_SCROLLING) {
-							if (!mScrollProfilingStarted) {
-								Debug.startMethodTracing("JessAbsListViewScroll");
-								mScrollProfilingStarted = true;
-							}
+						if (PROFILE_SCROLLING && !mScrollProfilingStarted) {
+							Debug.startMethodTracing("JessAbsListViewScroll");
+							mScrollProfilingStarted = true;
 						}
 	
 						if (x != mLastX) {
@@ -5071,11 +5053,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	
 					mActivePointerId = INVALID_POINTER;
 	
-					if (PROFILE_SCROLLING) {
-						if (mScrollProfilingStarted) {
-							Debug.stopMethodTracing();
-							mScrollProfilingStarted = false;
-						}
+					if (PROFILE_SCROLLING && mScrollProfilingStarted) {
+						Debug.stopMethodTracing();
+						mScrollProfilingStarted = false;
 					}
 					break;
 				}
@@ -5368,11 +5348,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				mTouchMode = TOUCH_MODE_FLING;
 				post(this);
 
-				if (PROFILE_FLINGING) {
-					if (!mFlingProfilingStarted) {
-						Debug.startMethodTracing("AbsListViewFling");
-						mFlingProfilingStarted = true;
-					}
+				if (PROFILE_FLINGING && !mFlingProfilingStarted) {
+					Debug.startMethodTracing("AbsListViewFling");
+					mFlingProfilingStarted = true;
 				}
 			}
 
@@ -5435,11 +5413,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 					} else {
 						endFling();
 
-						if (PROFILE_FLINGING) {
-							if (mFlingProfilingStarted) {
-								Debug.stopMethodTracing();
-								mFlingProfilingStarted = false;
-							}
+						if (PROFILE_FLINGING && mFlingProfilingStarted) {
+							Debug.stopMethodTracing();
+							mFlingProfilingStarted = false;
 						}
 					}
 					break;
