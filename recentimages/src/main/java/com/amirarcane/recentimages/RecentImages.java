@@ -11,18 +11,18 @@ import com.amirarcane.recentimages.thumbnailOptions.ImageAdapter;
  */
 public class RecentImages {
 
-	public String ASCENDING = " ASC";
-	public String DESCENDING = " DESC";
-	public String DESCRIPTION = "description";
-	public String PICASA_ID = "picasa_id";
-	public String IS_PRIVATE = "isprivate";
-	public String LATITUDE = "latitude";
-	public String LONGITUDE = "longitude";
-	public String DATE_TAKEN = "datetaken";
-	public String ORIENTATION = "orientation";
-	public String MINI_THUMB_MAGIC = "mini_thumb_magic";
-	public String BUCKET_ID = "bucket_id";
-	public String BUCKET_DISPLAY_NAME = "bucket_display_name";
+	public static final String ASCENDING = " ASC";
+	public static final String DESCENDING = " DESC";
+	public static final String DESCRIPTION = "description";
+	public static final String PICASA_ID = "picasa_id";
+	public static final String IS_PRIVATE = "isprivate";
+	public static final String LATITUDE = "latitude";
+	public static final String LONGITUDE = "longitude";
+	public static final String DATE_TAKEN = "datetaken";
+	public static final String ORIENTATION = "orientation";
+	public static final String MINI_THUMB_MAGIC = "mini_thumb_magic";
+	public static final String BUCKET_ID = "bucket_id";
+	public static final String BUCKET_DISPLAY_NAME = "bucket_display_name";
 
 	public ImageAdapter getAdapter(Context context) {
 		return getAdapter(context, DATE_TAKEN, DESCENDING);
