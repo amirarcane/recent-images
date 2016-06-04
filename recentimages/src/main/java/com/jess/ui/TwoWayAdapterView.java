@@ -1083,7 +1083,7 @@ public abstract class TwoWayAdapterView<T extends Adapter> extends ViewGroup {
 				seed = last;
 				// Try going up next time
 				next = false;
-			} else if (hitLast || (!next && !hitFirst)) {
+			} else if (hitLast) {
 				// Either we hit the bottom, or we are trying to move up
 				first--;
 				seed = first;
