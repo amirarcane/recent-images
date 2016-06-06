@@ -3,6 +3,7 @@ package com.amirarcane.recentimages;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import com.amirarcane.recentimages.thumbnailOptions.ImageAdapter;
 
@@ -10,6 +11,8 @@ import com.amirarcane.recentimages.thumbnailOptions.ImageAdapter;
  * Created by Arcane on 10/30/15 AD.
  */
 public class RecentImages {
+
+	private static final String TAG = "RecentImages";
 
 	public static final String ASCENDING = " ASC";
 	public static final String DESCENDING = " DESC";
@@ -35,10 +38,9 @@ public class RecentImages {
 					MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME, MediaStore.Images.ImageColumns.DATE_TAKEN, MediaStore.Images.ImageColumns.MIME_TYPE};
 			mImageCursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection, null, null, columns + sort);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(TAG, "Exception while getting adapter", e);
 		}
-		ImageAdapter mAdapter = new ImageAdapter(context, mImageCursor);
-		return mAdapter;
+		return new ImageAdapter(context, mImageCursor);
 	}
 
 	public void setDrawable(int drawable) {
