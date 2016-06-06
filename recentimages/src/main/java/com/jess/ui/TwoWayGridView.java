@@ -1451,52 +1451,47 @@ public class TwoWayGridView extends TwoWayAbsListView {
 				mNumColumns = 1;
 			}
 
-			switch (stretchMode) {
-			case NO_STRETCH:
+			if (stretchMode == NO_STRETCH) {
 				// Nobody stretches
 				mColumnWidth = requestedColumnWidth;
 				mHorizontalSpacing = requestedHorizontalSpacing;
-				break;
-
-			default:
+			} else {
 				int spaceLeftOver;
 				switch (stretchMode) {
-				case STRETCH_COLUMN_WIDTH:
-					// Stretch the columns
-					spaceLeftOver = availableSpace - (mNumColumns * requestedColumnWidth) -
-					((mNumColumns - 1) * requestedHorizontalSpacing);
-					mColumnWidth = requestedColumnWidth + spaceLeftOver / mNumColumns;
-					mHorizontalSpacing = requestedHorizontalSpacing;
-					break;
+					case STRETCH_COLUMN_WIDTH:
+						// Stretch the columns
+						spaceLeftOver = availableSpace - (mNumColumns * requestedColumnWidth) -
+								((mNumColumns - 1) * requestedHorizontalSpacing);
+						mColumnWidth = requestedColumnWidth + spaceLeftOver / mNumColumns;
+						mHorizontalSpacing = requestedHorizontalSpacing;
+						break;
 
-				case STRETCH_SPACING:
-					// Stretch the spacing between columns
-					spaceLeftOver = availableSpace - (mNumColumns * requestedColumnWidth) -
-					((mNumColumns - 1) * requestedHorizontalSpacing);
-					mColumnWidth = requestedColumnWidth;
-					if (mNumColumns > 1) {
-						mHorizontalSpacing = requestedHorizontalSpacing +
-						spaceLeftOver / (mNumColumns - 1);
-					} else {
-						mHorizontalSpacing = requestedHorizontalSpacing + spaceLeftOver;
-					}
-					break;
+					case STRETCH_SPACING:
+						// Stretch the spacing between columns
+						spaceLeftOver = availableSpace - (mNumColumns * requestedColumnWidth) -
+								((mNumColumns - 1) * requestedHorizontalSpacing);
+						mColumnWidth = requestedColumnWidth;
+						if (mNumColumns > 1) {
+							mHorizontalSpacing = requestedHorizontalSpacing +
+									spaceLeftOver / (mNumColumns - 1);
+						} else {
+							mHorizontalSpacing = requestedHorizontalSpacing + spaceLeftOver;
+						}
+						break;
 
-				case STRETCH_SPACING_UNIFORM:
-					// Stretch the spacing between columns
-					spaceLeftOver = availableSpace - (mNumColumns * requestedColumnWidth) -
-					((mNumColumns + 1) * requestedHorizontalSpacing);
-					mColumnWidth = requestedColumnWidth;
-					if (mNumColumns > 1) {
-						mHorizontalSpacing = requestedHorizontalSpacing +
-						spaceLeftOver / (mNumColumns + 1);
-					} else {
-						mHorizontalSpacing = ((requestedHorizontalSpacing * 2) + spaceLeftOver) / 2;
-					}
-					break;
+					case STRETCH_SPACING_UNIFORM:
+						// Stretch the spacing between columns
+						spaceLeftOver = availableSpace - (mNumColumns * requestedColumnWidth) -
+								((mNumColumns + 1) * requestedHorizontalSpacing);
+						mColumnWidth = requestedColumnWidth;
+						if (mNumColumns > 1) {
+							mHorizontalSpacing = requestedHorizontalSpacing +
+									spaceLeftOver / (mNumColumns + 1);
+						} else {
+							mHorizontalSpacing = ((requestedHorizontalSpacing * 2) + spaceLeftOver) / 2;
+						}
+						break;
 				}
-
-				break;
 			}
 		}
 
@@ -2950,14 +2945,12 @@ public class TwoWayGridView extends TwoWayAbsListView {
 				mNumRows = 1;
 			}
 
-			switch (stretchMode) {
-			case NO_STRETCH:
+			if (stretchMode == NO_STRETCH) {
 				// Nobody stretches
 				mRowHeight = mRequestedRowHeight;
 				mVerticalSpacing = mRequestedVerticalSpacing;
-				break;
 
-			default:
+			} else {
 				int spaceLeftOver;
 				switch (stretchMode) {
 				case STRETCH_COLUMN_WIDTH:
@@ -2993,8 +2986,6 @@ public class TwoWayGridView extends TwoWayAbsListView {
 					}
 					break;
 				}
-
-				break;
 			}
 			if (DEBUG) Log.i(TAG, "determineRows() mRowHeight: " + mRowHeight + " mVerticalSpacing: " + mVerticalSpacing + " mStretchMode: " + mStretchMode);
 		}
