@@ -3968,6 +3968,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 						mLastY = y;
 					}
 					break;
+				default:
+					break;
 				}
 
 				break;
@@ -4067,6 +4069,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 						reportScrollStateChange(OnScrollListener.SCROLL_STATE_IDLE);
 					}
 					break;
+				default:
+					break;
 				}
 
 				setPressed(false);
@@ -4115,6 +4119,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				mActivePointerId = INVALID_POINTER;
 				break;
 			}
+			default:
+				break;
 
 			}
 
@@ -4182,6 +4188,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 					reportScrollStateChange(OnScrollListener.SCROLL_STATE_IDLE);
 					break;
 				}
+				default:
+					break;
 			}
 
 			return false;
@@ -4809,6 +4817,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 					break;
 				}
 
+				default:
+					break;
+
 			}
 
 			return false;
@@ -4933,6 +4944,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 							mLastX = x;
 						}
 						break;
+					default:
+						break;
 					}
 	
 					break;
@@ -5032,6 +5045,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 							reportScrollStateChange(OnScrollListener.SCROLL_STATE_IDLE);
 						}
 						break;
+					default:
+						break;
 					}
 	
 					setPressed(false);
@@ -5080,6 +5095,9 @@ ViewTreeObserver.OnTouchModeChangeListener {
 					mActivePointerId = INVALID_POINTER;
 					break;
 				}
+
+				default:
+					break;
 			}
 
 			return true;

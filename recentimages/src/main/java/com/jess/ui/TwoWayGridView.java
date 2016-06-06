@@ -414,6 +414,8 @@ public class TwoWayGridView extends TwoWayAbsListView {
 				case KeyEvent.KEYCODE_ENTER:
 					resurrectSelection();
 					return true;
+				default:
+					break;
 				}
 			}
 
@@ -468,6 +470,8 @@ public class TwoWayGridView extends TwoWayAbsListView {
 					handled = pageScroll(FOCUS_UP);
 				}
 				//}
+				break;
+			default:
 				break;
 			}
 		}
@@ -1494,6 +1498,8 @@ public class TwoWayGridView extends TwoWayAbsListView {
 						mHorizontalSpacing = ((requestedHorizontalSpacing * 2) + spaceLeftOver) / 2;
 					}
 					break;
+				default:
+					break;
 				}
 
 				break;
@@ -2081,6 +2087,8 @@ public class TwoWayGridView extends TwoWayAbsListView {
 					setSelectionInt(Math.min(selectedPosition + 1, mItemCount - 1));
 					moved = true;
 				}
+				break;
+			default:
 				break;
 			}
 
@@ -2992,6 +3000,9 @@ public class TwoWayGridView extends TwoWayAbsListView {
 						mVerticalSpacing = ((requestedVerticalSpacing * 2) + spaceLeftOver) / 2;
 					}
 					break;
+
+				default:
+					break;
 				}
 
 				break;
@@ -3403,6 +3414,8 @@ public class TwoWayGridView extends TwoWayAbsListView {
 					setSelectionInt(Math.min(selectedPosition + 1, mItemCount - 1));
 					moved = true;
 				}
+				break;
+			default:
 				break;
 			}
 

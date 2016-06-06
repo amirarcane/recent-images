@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
 					imageUri = data.getData();
 				}
 				break;
+			default:
+				break;
 		}
 		Bitmap bitmap = null;
 		try {
