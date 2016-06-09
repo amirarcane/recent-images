@@ -63,17 +63,14 @@ public class MainActivity extends AppCompatActivity {
 		menu.addOnItemTouchListener(new RecyclerItemClickListener(this, menu, new RecyclerItemClickListener.OnItemClickListener() {
 			@Override
 			public void onItemClick(View view, int i) {
-				switch (i) {
-					case 0:
-						takePhoto(view);
-						mBottomSheetDialog.dismiss();
-						break;
-					case 1:
-						Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-						photoPickerIntent.setType("image/*");
-						startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-						mBottomSheetDialog.dismiss();
-						break;
+				if (i == 0) {
+					takePhoto(view);
+					mBottomSheetDialog.dismiss();
+				} else if (i == 1) {
+					Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+					photoPickerIntent.setType("image/*");
+					startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+					mBottomSheetDialog.dismiss();
 				}
 			}
 

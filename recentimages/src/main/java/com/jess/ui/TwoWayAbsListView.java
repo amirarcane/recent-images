@@ -1965,9 +1965,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		switch (keyCode) {
-		case KeyEvent.KEYCODE_DPAD_CENTER:
-		case KeyEvent.KEYCODE_ENTER:
+		if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) {
 			if (!isEnabled()) {
 				return true;
 			}
@@ -1983,7 +1981,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				setPressed(false);
 				return true;
 			}
-			break;
 		}
 		return super.onKeyUp(keyCode, event);
 	}
@@ -2344,8 +2341,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 					return;
 				}
 
-				switch (mSyncMode) {
-				case SYNC_SELECTED_POSITION:
+				if (mSyncMode == SYNC_SELECTED_POSITION ) {
 					if (isInTouchMode()) {
 						// We saved our state when not in touch mode. (We know this because
 						// mSyncMode is SYNC_SELECTED_POSITION.) Now we are trying to
@@ -2382,8 +2378,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 							}
 						}
 					}
-					break;
-				case SYNC_FIRST_POSITION:
+				} else if(mSyncMode == SYNC_FIRST_POSITION)  {
 					// Leave mSyncPosition as it is -- just pin to available range
 					mLayoutMode = LAYOUT_SYNC;
 					mSyncPosition = Math.min(Math.max(0, mSyncPosition), count - 1);
@@ -4165,8 +4160,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				}
 	
 				case MotionEvent.ACTION_MOVE: {
-					switch (mTouchMode) {
-					case TOUCH_MODE_DOWN:
+					if (mTouchMode == TOUCH_MODE_DOWN) {
 						final int y = (int) ev.getY();
 						if (startScrollIfNeeded(y - mMotionY)) {
 							return true;
@@ -4486,11 +4480,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 
 			@Override
 			public void run() {
-				switch (mTouchMode) {
-				default:
-					return;
-
-				case TOUCH_MODE_FLING: {
+				if (mTouchMode == TOUCH_MODE_FLING) {
 					if (mItemCount == 0 || getChildCount() == 0) {
 						endFling();
 						return;
@@ -4539,8 +4529,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 							mFlingProfilingStarted = false;
 						}
 					}
-					break;
-				}
+				} else {
+					return;
 				}
 
 			}
@@ -4791,13 +4781,11 @@ ViewTreeObserver.OnTouchModeChangeListener {
 				}
 	
 				case MotionEvent.ACTION_MOVE: {
-					switch (mTouchMode) {
-					case TOUCH_MODE_DOWN:
+					if (mTouchMode == TOUCH_MODE_DOWN) {
 						final int x = (int) ev.getX();
 						if (startScrollIfNeeded(x - mMotionX)) {
 							return true;
 						}
-						break;
 					}
 					break;
 				}
@@ -5363,11 +5351,7 @@ ViewTreeObserver.OnTouchModeChangeListener {
 
 			@Override
 			public void run() {
-				switch (mTouchMode) {
-				default:
-					return;
-
-				case TOUCH_MODE_FLING: {
+				if (mTouchMode == TOUCH_MODE_FLING) {
 					if (mItemCount == 0 || getChildCount() == 0) {
 						endFling();
 						return;
@@ -5416,8 +5400,8 @@ ViewTreeObserver.OnTouchModeChangeListener {
 							mFlingProfilingStarted = false;
 						}
 					}
-					break;
-				}
+				} else {
+					return;
 				}
 
 			}
