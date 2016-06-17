@@ -2971,8 +2971,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	protected boolean checkConsistency(int consistency) {
 		boolean result = true;
 
-		final boolean checkLayout = true;
-
 		// The active recycler must be empty
 		final View[] activeViews = mRecycler.mActiveViews;
 		int count = activeViews.length;

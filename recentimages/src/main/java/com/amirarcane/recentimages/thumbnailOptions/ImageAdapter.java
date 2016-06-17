@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ImageAdapter extends CursorAdapter {
-	public static final String[] IMAGE_PROJECTION = {
+	private static final String[] IMAGE_PROJECTION = {
 			MediaStore.Images.ImageColumns._ID,
 			MediaStore.Images.ImageColumns.DISPLAY_NAME,
 	};
@@ -327,6 +327,7 @@ public class ImageAdapter extends CursorAdapter {
 							try {
 								mQueue.wait();
 							} catch (InterruptedException ignored) {
+								Thread.currentThread().interrupt();
 							}
 						}
 
