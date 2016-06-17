@@ -448,7 +448,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	//private boolean mGlobalLayoutListenerAddedFilter;
 
 	private int mTouchSlop;
-	private float mDensityScale;
 
 	//private InputConnection mDefInputConnection;
 	//private InputConnectionWrapper mPublicInputConnection;
@@ -470,12 +469,6 @@ ViewTreeObserver.OnTouchModeChangeListener {
 	// True when the popup should be hidden because of a call to
 	// dispatchDisplayHint()
 	//private boolean mPopupHidden;
-
-	/**
-	 * ID of the active pointer. This is used to retain consistency during
-	 * drags/flings if multiple pointers are used.
-	 */
-	private int mActivePointerId = INVALID_POINTER;
 
 	/**
 	 * Sentinel value for no current active pointer.

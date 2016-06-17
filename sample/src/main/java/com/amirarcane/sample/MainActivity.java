@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -29,12 +30,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+	private static final String TAG = "MainActivity";
+
 	private Uri imageUri;
 	ArrayList<MenuItem> menuItems = new ArrayList<>();
-	private TwoWayGridView mImageGrid;
-	private ImageView image;
 
+	private ImageView image;
 	private static final int TAKE_PICTURE = 0;
+
 	private static final int SELECT_PHOTO = 1;
 
 	@Override
@@ -96,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 						try {
 							bitmap = MediaStore.Images.Media.getBitmap(MainActivity.this.getContentResolver(), imageUri);
 						} catch (IOException e) {
-							e.printStackTrace();
+							Log.e(TAG, "Exception while getting image", e);
 						}
 						image.setImageBitmap(bitmap);
 					}
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 		try {
 			bitmap = MediaStore.Images.Media.getBitmap(MainActivity.this.getContentResolver(), imageUri);
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e(TAG, "Exception while getting image", e);
 		}
 		image.setImageBitmap(bitmap);
 	}
