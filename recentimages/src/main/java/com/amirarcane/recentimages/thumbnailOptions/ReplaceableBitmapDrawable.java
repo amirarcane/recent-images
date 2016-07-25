@@ -28,6 +28,8 @@ import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 
 public class ReplaceableBitmapDrawable extends Drawable {
+	private static final String TAG = "ReplaceableBitmapDrawable";
+	private static final boolean DEBUG = false;
 
 	private Bitmap mBitmap;
 	private boolean mLoaded;
