@@ -2,53 +2,67 @@
 <items version="2" >
 
     <item
-        jar="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        is-multidex="false"
+        jar="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
         jumboMode="false"
+        optimize="true"
         revision="22.0.1"
         sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/pre-dexed/debug/classes-3997a9f5a9f3edd81ce963fccddce0046035fa7e.jar" />
+        <dex dex="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_90a1d51bc08b4f099e2ecc88a8d70ca487920c6b.jar" />
     </item>
     <item
-        jar="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/exploded-aar/com.amirarcane.recent-images/recentimages/1.0.0/jars/classes.jar"
+        is-multidex="false"
+        jar="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
         jumboMode="false"
-        revision="22.0.1"
-        sha1="302e0a2fe777109ad17d6441c124f04452fc37ef">
-        <dex dex="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/pre-dexed/debug/classes-707f0590b906097608ad81ebe13f18b07e6c7d31.jar" />
-    </item>
-    <item
-        jar="/Users/Amir/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
-        <dex dex="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/pre-dexed/debug/butterknife-7.0.1-28990aca54e303c9ee41cb34438fbaa450427f36.jar" />
-    </item>
-    <item
-        jar="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
-        jumboMode="false"
+        optimize="true"
         revision="22.0.1"
         sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-c01aef896c8f0ddfe5dfbd7c61add37c721ac93f.jar" />
+        <dex dex="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/pre-dexed/debug/internal_impl-23.0.1_9b6f0e173b2623a044e47e1881c581888c8d97c9.jar" />
     </item>
     <item
-        jar="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/pre-dexed/debug/classes-49e22115f58e74eef9d900a5564afa4a72fa6a46.jar" />
-    </item>
-    <item
+        is-multidex="false"
         jar="/Users/Amir/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
         jumboMode="false"
+        optimize="true"
         revision="22.0.1"
         sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-150c75f3c9053a354b10e5f2df01d3c98df9be18.jar" />
+        <dex dex="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/pre-dexed/debug/support-annotations-23.0.1_150c75f3c9053a354b10e5f2df01d3c98df9be18.jar" />
     </item>
     <item
-        jar="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        is-multidex="false"
+        jar="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.1_6a07b92b77b2c3660f09ebd558a8646a5915680f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/exploded-aar/com.amirarcane.recent-images/recentimages/1.0.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="b153ede37f7596cb3d48ba66d23af2814cf445c3">
+        <dex dex="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/pre-dexed/debug/com.amirarcane.recent-images-recentimages-1.0.4_2732cb2d61deb38c9623c14aa1d1c3fe687d77bc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Amir/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/pre-dexed/debug/butterknife-7.0.1_28990aca54e303c9ee41cb34438fbaa450427f36.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
         revision="22.0.1"
         sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
-        <dex dex="/Users/Amir/AndroidStudioProjects/Sample/sample/build/intermediates/pre-dexed/debug/classes-802a7a4b493d85f15e3edb036aebcc967ec76bcf.jar" />
+        <dex dex="/Users/Amir/Desktop/Development/Previous Android Projects/recent-images/sample/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.0.1_a23d98403da0be3e3743ff77fabea7ea86b796e7.jar" />
     </item>
 
 </items>

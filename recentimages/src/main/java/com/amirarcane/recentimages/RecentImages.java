@@ -41,6 +41,10 @@ public class RecentImages {
 		return mAdapter;
 	}
 
+	public void cleanupCache() {
+		ImageAdapter.cleanupCache();
+	}
+
 	public void setDrawable(int drawable) {
 		ImageAdapter.DRAWABLE = drawable;
 	}

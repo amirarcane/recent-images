@@ -8,9 +8,9 @@ android {
 
     defaultConfig {
         minSdkVersion 8
-        targetSdkVersion 22
-        versionCode 5
-        versionName "1.0.4"
+        targetSdkVersion 23
+        versionCode 6
+        versionName "1.0.5"
     }
     buildTypes {
         release {
@@ -39,7 +39,7 @@ ext {
     siteUrl = 'https://github.com/amirarcane/recent-images'
     gitUrl = 'https://github.com/amirarcane/recent-images.git'
 
-    libraryVersion = '1.0.4'
+    libraryVersion = '1.0.5'
 
     developerId = 'amirarcane'
     developerName = 'Amirhossein Naghshzan'

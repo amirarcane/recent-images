@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				mBottomSheetDialog.show();
 
-				RecentImages ri = new RecentImages();
+				final RecentImages ri = new RecentImages();
 				ImageAdapter adapter = ri.getAdapter(MainActivity.this);
 
 				gridview.setAdapter(adapter);
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
 							e.printStackTrace();
 						}
 						image.setImageBitmap(bitmap);
+						mBottomSheetDialog.dismiss();
 					}
 				});
 			}

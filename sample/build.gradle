@@ -7,9 +7,9 @@ android {
 	defaultConfig {
 		applicationId "com.amirarcane.sample"
 		minSdkVersion 14
-		targetSdkVersion 22
-		versionCode 3
-		versionName "1.0.2"
+		targetSdkVersion 23
+		versionCode 4
+		versionName "1.0.3"
 	}
 	buildTypes {
 		release {
