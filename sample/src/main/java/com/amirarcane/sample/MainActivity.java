@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
 		cr = this.getContentResolver();
 
+		final RecentImages ri = new RecentImages();
+		final ImageAdapter adapter = ri.getAdapter(MainActivity.this);
+
 		RecyclerView menu = (RecyclerView) bottomSheet.findViewById(R.id.menu);
 		MenuAdapter menuAdapter = new MenuAdapter(menuItems);
 		menu.setLayoutManager(new LinearLayoutManager(this));
@@ -128,6 +131,13 @@ public class MainActivity extends AppCompatActivity {
 						mBottomSheetDialog.dismiss();
 					}
 				});
+			}
+		});
+		Button button1 = (Button) findViewById(R.id.button1);
+		button1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ri.cleanupCache();
 			}
 		});
 	}

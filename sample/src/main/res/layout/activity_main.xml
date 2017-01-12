@@ -10,19 +10,25 @@
 
 	<Button
 		android:id="@+id/button"
-		android:layout_width="wrap_content"
+		android:layout_width="150dp"
 		android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true"
 		android:text="CHOOSE IMAGE"/>
 
+	<Button
+		android:id="@+id/button1"
+		android:layout_width="150dp"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/button"
+		android:layout_centerHorizontal="true"
+		android:text="CLEAR CACHE"/>
+
 	<ImageView
 		android:id="@+id/imageView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/button"
+		android:layout_below="@+id/button1"
 		android:layout_centerHorizontal="true"
 		android:layout_centerVertical="true"/>
-
-
 </RelativeLayout>
