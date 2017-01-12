@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -116,17 +117,19 @@ public class MainActivity extends AppCompatActivity {
 				break;
 			case SELECT_PHOTO:
 				if (resultCode == Activity.RESULT_OK) {
-					imageUri = data.getData();
+						imageUri = data.getData();
 				}
 				break;
 		}
-		Bitmap bitmap = null;
-		try {
-			bitmap = MediaStore.Images.Media.getBitmap(MainActivity.this.getContentResolver(), imageUri);
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (imageUri != null) {
+			Bitmap bitmap = null;
+			try {
+				bitmap = MediaStore.Images.Media.getBitmap(MainActivity.this.getContentResolver(), imageUri);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			image.setImageBitmap(bitmap);
 		}
-		image.setImageBitmap(bitmap);
 	}
 
 	//take photo via camera intent
