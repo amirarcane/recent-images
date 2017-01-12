@@ -116,16 +116,15 @@ public class MainActivity extends AppCompatActivity {
 					public void onItemClick(TwoWayAdapterView parent, View v, int position, long id) {
 						imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
 						Bitmap bitmap = null;
+						Drawable d = null;
 						try {
 							int orientation = getOrientation(cr, (int) id);
-							Matrix matrix = new Matrix();
-							matrix.postRotate(orientation);
 							bitmap = MediaStore.Images.Media.getBitmap(cr, imageUri);
-							bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+							d = getRotateDrawable(bitmap, orientation);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-						image.setImageBitmap(bitmap);
+						image.setImageDrawable(d);
 						mBottomSheetDialog.dismiss();
 					}
 				});
@@ -216,5 +215,18 @@ public class MainActivity extends AppCompatActivity {
 		}
 		cursor.close();
 		return orientation;
+	}
+
+	private Drawable getRotateDrawable(final Bitmap b, final float angle) {
+		final BitmapDrawable drawable = new BitmapDrawable(getResources(), b) {
+			@Override
+			public void draw(final Canvas canvas) {
+				canvas.save();
+				canvas.rotate(angle, b.getWidth() / 2, b.getHeight() / 2);
+				super.draw(canvas);
+				canvas.restore();
+			}
+		};
+		return drawable;
 	}
 }
