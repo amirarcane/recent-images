@@ -1,15 +1,22 @@
 package com.amirarcane.sample;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Telephony;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.amirarcane.recentimages.RecentImages;
 import com.amirarcane.recentimages.thumbnailOptions.ImageAdapter;
@@ -46,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
 		final View bottomSheet = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
 		image = (ImageView) findViewById(R.id.imageView);
 		final TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
+
+		//Permissions need to be granted at runtime on Marshmallow
+		if (Build.VERSION.SDK_INT >= 21) {
+			CheckPermissions();
+		}
 
 		final Dialog mBottomSheetDialog = new Dialog(this, R.style.MaterialDialogSheet);
 		mBottomSheetDialog.setContentView(bottomSheet);
@@ -132,6 +145,25 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		switch (requestCode) {
+			case 1:
+				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					Toast.makeText(this, "Thanks!",
+							Toast.LENGTH_SHORT).show();
+				} else {
+					//If user denies Storage Permission, explain why permission is needed and prompt again.
+					Toast.makeText(this, "Storage access is needed to display images.",
+							Toast.LENGTH_SHORT).show();
+					CheckPermissions();
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
 	//take photo via camera intent
 	public void takePhoto(View view) {
 		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
@@ -140,5 +172,14 @@ public class MainActivity extends AppCompatActivity {
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
 		imageUri = Uri.fromFile(photo);
 		startActivityForResult(intent, TAKE_PICTURE);
+	}
+
+	public void CheckPermissions()
+	{
+		int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+		if (permissionCheck != PackageManager.PERMISSION_GRANTED)
+		{
+			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+		}
 	}
 }
