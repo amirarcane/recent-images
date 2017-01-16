@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 import com.amirarcane.recentimages.R;
 import com.jess.ui.TwoWayAbsListView;
 
+import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.LinkedList;
 import java.util.Map;
@@ -116,12 +119,39 @@ public class ImageAdapter extends CursorAdapter {
 
 	private static Bitmap loadThumbnail(ContentResolver cr, Uri uri) {
 
+		int id = (int) ContentUris.parseId(uri);
+		int orientation = getOrientation(cr, id);
+		Matrix matrix = new Matrix();
+		matrix.postRotate(orientation);
+		Log.d("Orientation", String.valueOf(orientation));
 		Bitmap bitmap = MediaStore.Images.Thumbnails.getThumbnail(
-				cr, ContentUris.parseId(uri), KIND, sBitmapOptions);
-		return crop(bitmap);
+				cr, id, KIND, sBitmapOptions);
+		bitmap = crop(bitmap, matrix);
+		return bitmap;
 	}
 
-	private static Bitmap crop(Bitmap srcBmp) {
+	private static int getOrientation(ContentResolver cr, int id) {
+
+		String photoID = String.valueOf(id);
+
+		Cursor cursor = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+				new String[] {MediaStore.Images.Media.ORIENTATION}, MediaStore.Images.Media._ID + "=?",
+				new String[] {"" + photoID}, null);
+		int orientation = -1;
+
+		if (cursor.getCount() != 1) {
+			return -1;
+		}
+
+		if (cursor.moveToFirst())
+		{
+			orientation = cursor.getInt(0);
+		}
+		cursor.close();
+		return orientation;
+	}
+
+	private static Bitmap crop(Bitmap srcBmp, Matrix matrix) {
 		Bitmap dstBmp;
 		if (srcBmp.getWidth() >= srcBmp.getHeight()) {
 
@@ -130,7 +160,9 @@ public class ImageAdapter extends CursorAdapter {
 					srcBmp.getWidth() / 2 - srcBmp.getHeight() / 2,
 					0,
 					srcBmp.getHeight(),
-					srcBmp.getHeight()
+					srcBmp.getHeight(),
+					matrix,
+					true
 			);
 
 		} else {
@@ -140,7 +172,9 @@ public class ImageAdapter extends CursorAdapter {
 					0,
 					srcBmp.getHeight() / 2 - srcBmp.getWidth() / 2,
 					srcBmp.getWidth(),
-					srcBmp.getWidth()
+					srcBmp.getWidth(),
+					matrix,
+					true
 			);
 		}
 		return dstBmp;
