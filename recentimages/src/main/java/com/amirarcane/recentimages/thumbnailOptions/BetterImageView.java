@@ -54,7 +54,6 @@ public class BetterImageView extends ImageView {
 			 * is probably not worth the effort.
 			 */
 			Log.i(TAG, "invalidateDrawable - setting imageDrawable");
-			//destroyDrawingCache();
 			drawableStateChanged();
 			forceLayout();
 			setImageDrawable(currentDrawable);
