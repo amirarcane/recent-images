@@ -40,9 +40,9 @@ public class ImageAdapter extends CursorAdapter {
 
 	private static final String TAG = "ImageAdapter";
 
-	public static float IMAGE_WIDTH = 70;
-	public static float IMAGE_HEIGHT = 70;
-	public static float IMAGE_PADDING = 0;
+	public static final float IMAGE_WIDTH = 70;
+	public static final float IMAGE_HEIGHT = 70;
+	public static final float IMAGE_PADDING = 0;
 
 	private static final Map<Long, SoftReference<ReplaceableBitmapDrawable>> sImageCache =
 			new ConcurrentHashMap<Long, SoftReference<ReplaceableBitmapDrawable>>();
@@ -58,11 +58,11 @@ public class ImageAdapter extends CursorAdapter {
 	private int mImageHeight;
 	private int mImagePadding;
 
-	public ImageView.ScaleType SCALE_TYPE = ImageView.ScaleType.CENTER_CROP;
-	public static int IN_SAMPLE_SIZE = 3;
-	public static int KIND = 1;
+	public static final ImageView.ScaleType SCALE_TYPE = ImageView.ScaleType.CENTER_CROP;
+	public static final int IN_SAMPLE_SIZE = 3;
+	public static final int KIND = 1;
 
-	public static int DRAWABLE = R.drawable.spinner_black_76;
+	public static final int DRAWABLE = R.drawable.spinner_black_76;
 
 	public ImageAdapter(Context context, Cursor c) {
 		this(context, c, true);
