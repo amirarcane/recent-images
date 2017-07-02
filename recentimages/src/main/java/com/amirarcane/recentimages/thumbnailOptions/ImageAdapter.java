@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.Matrix;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -21,7 +20,6 @@ import android.widget.ImageView;
 import com.amirarcane.recentimages.R;
 import com.jess.ui.TwoWayAbsListView;
 
-import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.LinkedList;
 import java.util.Map;
@@ -59,8 +57,8 @@ public class ImageAdapter extends CursorAdapter {
 	private int mImagePadding;
 
 	public ImageView.ScaleType SCALE_TYPE = ImageView.ScaleType.CENTER_CROP;
-	public static int IN_SAMPLE_SIZE = 3;
-	public static int KIND = 1;
+	public static int IN_SAMPLE_SIZE = 2;
+	public static int KIND = MediaStore.Images.Thumbnails.MINI_KIND;
 
 	public static int DRAWABLE = R.drawable.spinner_black_76;
 
