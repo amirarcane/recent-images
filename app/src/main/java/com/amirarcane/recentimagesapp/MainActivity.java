@@ -89,15 +89,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
-                gridview.getLayoutParams().height = Units.dpToPx(mContext, 100);
-                gridview.setNumRows(1);
-
                 RecentImages ri = new RecentImages();
                 ri.setHeight(100);
                 ri.setWidth(100);
                 ImageAdapter adapter = ri.getAdapter(MainActivity.this);
 
+                TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
+                gridview.getLayoutParams().height = Units.dpToPx(mContext, 100);
+                gridview.setNumRows(1);
                 gridview.setAdapter(adapter);
                 gridview.setOnItemClickListener(new TwoWayAdapterView.OnItemClickListener() {
                     public void onItemClick(TwoWayAdapterView parent, View v, int position, long id) {
@@ -116,15 +115,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
-                gridview.getLayoutParams().height = Units.dpToPx(mContext, 200);
-                gridview.setNumRows(2);
-
                 RecentImages ri = new RecentImages();
                 ri.setHeight(100);
                 ri.setWidth(100);
                 ImageAdapter adapter = ri.getAdapter(MainActivity.this);
 
+                TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
+                gridview.getLayoutParams().height = Units.dpToPx(mContext, 200);
+                gridview.setNumRows(2);
                 gridview.setAdapter(adapter);
                 gridview.setOnItemClickListener(new TwoWayAdapterView.OnItemClickListener() {
                     public void onItemClick(TwoWayAdapterView parent, View v, int position, long id) {
