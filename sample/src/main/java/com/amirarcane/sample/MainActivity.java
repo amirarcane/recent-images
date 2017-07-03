@@ -32,7 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.amirarcane.recentimages.RecentImages;
-import com.amirarcane.recentimages.thumbnailOptions.ImageAdapter;
+import com.amirarcane.recentimages.ImageAdapter;
 import com.jess.ui.TwoWayAdapterView;
 import com.jess.ui.TwoWayGridView;
 
@@ -56,14 +56,12 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		final View bottomSheet = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
-		image = (ImageView) findViewById(R.id.imageView);
-		final TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
-
 		//Permissions need to be granted at runtime on Marshmallow
 		if (Build.VERSION.SDK_INT >= 21) {
 			CheckPermissions();
 		}
+
+        final View bottomSheet = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
 
 		final Dialog mBottomSheetDialog = new Dialog(this, R.style.MaterialDialogSheet);
 		mBottomSheetDialog.setContentView(bottomSheet);
@@ -75,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
 		menuItems.add(new MenuItem("Gallery", R.drawable.ic_action_image));
 
 		cr = this.getContentResolver();
-
-		final RecentImages ri = new RecentImages();
-		final ImageAdapter adapter = ri.getAdapter(MainActivity.this);
 
 		RecyclerView menu = (RecyclerView) bottomSheet.findViewById(R.id.menu);
 		MenuAdapter menuAdapter = new MenuAdapter(menuItems);
@@ -103,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
 
 			}
 		}));
+
+        image = (ImageView) findViewById(R.id.imageView);
+        final TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
+
 		Button button = (Button) findViewById(R.id.button);
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -129,13 +128,6 @@ public class MainActivity extends AppCompatActivity {
 						mBottomSheetDialog.dismiss();
 					}
 				});
-			}
-		});
-		Button button1 = (Button) findViewById(R.id.button1);
-		button1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				ri.cleanupCache();
 			}
 		});
 	}
