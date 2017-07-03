@@ -37,7 +37,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 	private Uri imageUri;
-	ArrayList<MenuItem> menuItems = new ArrayList<>();
 	private ImageView mImage;
 	private ContentResolver cr;
     private Context mContext;
@@ -65,35 +64,26 @@ public class MainActivity extends AppCompatActivity {
 		mBottomSheetDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 		mBottomSheetDialog.getWindow().setGravity(Gravity.BOTTOM);
 
-		menuItems.add(new MenuItem("Camera", R.drawable.ic_local_see_black_48dp));
-		menuItems.add(new MenuItem("Gallery", R.drawable.ic_action_image));
-
 		cr = this.getContentResolver();
 
-		RecyclerView menu = (RecyclerView) bottomSheet.findViewById(R.id.menu);
-		MenuAdapter menuAdapter = new MenuAdapter(menuItems);
-		menu.setLayoutManager(new LinearLayoutManager(this));
-		menu.setAdapter(menuAdapter);
-
-		menu.addOnItemTouchListener(new RecyclerItemClickListener(this, menu, new RecyclerItemClickListener.OnItemClickListener() {
-			@Override
-			public void onItemClick(View view, int i) {
-				if (i == 0) {
-					takePhoto(view);
-					mBottomSheetDialog.dismiss();
-				} else if (i == 1) {
-					Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-					photoPickerIntent.setType("mImage/*");
-					startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-					mBottomSheetDialog.dismiss();
-				}
-			}
-
-			@Override
-			public void onItemLongClick(View view, int position) {
-
-			}
-		}));
+        LinearLayout layoutCamera = (LinearLayout) bottomSheet.findViewById(R.id.btn_camera);
+        LinearLayout layoutGallery = (LinearLayout) bottomSheet.findViewById(R.id.btn_gallery);
+        layoutCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takePhoto(view);
+                mBottomSheetDialog.dismiss();
+            }
+        });
+        layoutGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("mImage/*");
+                startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+                mBottomSheetDialog.dismiss();
+            }
+        });
 
         mImage = (ImageView) findViewById(R.id.imageView);
         final TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
