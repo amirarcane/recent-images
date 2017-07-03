@@ -1,9 +1,12 @@
 <resources>
 
 	<!-- Base application theme. -->
-	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-		<!-- Customize your theme here. -->
-	</style>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
 
 	<style name="MaterialDialogSheet" parent="@android:style/Theme.Dialog">
 		<item name="android:windowIsTranslucent">true</item>
@@ -19,5 +22,26 @@
 		<item name="android:windowEnterAnimation">@anim/popup_show</item>
 		<item name="android:windowExitAnimation">@anim/popup_hide</item>
 	</style>
-
+    <style name="CustomButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">none</item>
+        <item name="btn_cornerRadius">20dp</item>
+        <item name="btn_strokeWidth">1dp</item>
+        <item name="btn_strokeColor">@color/white</item>
+        <item name="btn_unpressColor">@color/transparent</item>
+        <item name="btn_pressColor">@color/transparent</item>
+        <item name="btn_text_unpressColor">@color/white</item>
+        <item name="btn_text_pressColor">@color/white</item>
+    </style>
 </resources>

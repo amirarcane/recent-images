@@ -5,13 +5,9 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,30 +19,28 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.amirarcane.recentimages.RecentImages;
 import com.amirarcane.recentimages.ImageAdapter;
+import com.amirarcane.recentimages.RecentImages;
+import com.bumptech.glide.Glide;
 import com.jess.ui.TwoWayAdapterView;
 import com.jess.ui.TwoWayGridView;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
 	private Uri imageUri;
 	ArrayList<MenuItem> menuItems = new ArrayList<>();
-	private TwoWayGridView mImageGrid;
-	private ImageView image;
+	private ImageView mImage;
 	private ContentResolver cr;
+    private Context mContext;
 
 	private static final int TAKE_PICTURE = 0;
 	private static final int SELECT_PHOTO = 1;
@@ -55,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+        mContext = getApplicationContext();
 
 		//Permissions need to be granted at runtime on Marshmallow
 		if (Build.VERSION.SDK_INT >= 21) {
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 					mBottomSheetDialog.dismiss();
 				} else if (i == 1) {
 					Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-					photoPickerIntent.setType("image/*");
+					photoPickerIntent.setType("mImage/*");
 					startActivityForResult(photoPickerIntent, SELECT_PHOTO);
 					mBottomSheetDialog.dismiss();
 				}
@@ -99,10 +95,10 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}));
 
-        image = (ImageView) findViewById(R.id.imageView);
+        mImage = (ImageView) findViewById(R.id.imageView);
         final TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
 
-		Button button = (Button) findViewById(R.id.button);
+        CustomButton button = (CustomButton) findViewById(R.id.button);
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -115,16 +111,7 @@ public class MainActivity extends AppCompatActivity {
 				gridview.setOnItemClickListener(new TwoWayAdapterView.OnItemClickListener() {
 					public void onItemClick(TwoWayAdapterView parent, View v, int position, long id) {
 						imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
-						Bitmap bitmap = null;
-						Drawable d = null;
-						try {
-							int orientation = getOrientation(cr, (int) id);
-							bitmap = MediaStore.Images.Media.getBitmap(cr, imageUri);
-							d = getRotateDrawable(bitmap, orientation);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						image.setImageDrawable(d);
+                        Glide.with(mContext).load(imageUri).into(mImage);
 						mBottomSheetDialog.dismiss();
 					}
 				});
@@ -147,14 +134,7 @@ public class MainActivity extends AppCompatActivity {
 				break;
 		}
 		if (imageUri != null) {
-			Bitmap bitmap = null;
-			try {
-				Log.d("ImageURI", String.valueOf(imageUri));
-				bitmap = MediaStore.Images.Media.getBitmap(MainActivity.this.getContentResolver(), imageUri);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			image.setImageBitmap(bitmap);
+            Glide.with(mContext).load(imageUri).into(mImage);
 		}
 	}
 
@@ -194,39 +174,5 @@ public class MainActivity extends AppCompatActivity {
 		{
 			ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
 		}
-	}
-
-	private static int getOrientation(ContentResolver cr, int id) {
-
-		String photoID = String.valueOf(id);
-
-		Cursor cursor = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-				new String[] {MediaStore.Images.Media.ORIENTATION}, MediaStore.Images.Media._ID + "=?",
-				new String[] {"" + photoID}, null);
-		int orientation = -1;
-
-		if (cursor.getCount() != 1) {
-			return -1;
-		}
-
-		if (cursor.moveToFirst())
-		{
-			orientation = cursor.getInt(0);
-		}
-		cursor.close();
-		return orientation;
-	}
-
-	private Drawable getRotateDrawable(final Bitmap b, final float angle) {
-		final BitmapDrawable drawable = new BitmapDrawable(getResources(), b) {
-			@Override
-			public void draw(final Canvas canvas) {
-				canvas.save();
-				canvas.rotate(angle, b.getWidth() / 2, b.getHeight() / 2);
-				super.draw(canvas);
-				canvas.restore();
-			}
-		};
-		return drawable;
 	}
 }
