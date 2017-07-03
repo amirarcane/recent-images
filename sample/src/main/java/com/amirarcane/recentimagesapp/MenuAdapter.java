@@ -1,4 +1,4 @@
-package com.amirarcane.sample;
+package com.amirarcane.recentimagesapp;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

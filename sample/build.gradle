@@ -5,7 +5,7 @@ android {
 	buildToolsVersion "25.0.2"
 
 	defaultConfig {
-		applicationId "com.amirarcane.sample"
+		applicationId "com.amirarcane.recentimagesapp"
 		minSdkVersion 14
 		versionCode 5
 		versionName "1.1.1"
