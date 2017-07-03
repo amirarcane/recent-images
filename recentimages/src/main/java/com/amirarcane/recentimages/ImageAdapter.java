@@ -34,7 +34,7 @@ public class ImageAdapter extends CursorAdapter {
     public ImageView.ScaleType SCALE_TYPE = ImageView.ScaleType.CENTER_CROP;
     public static int KIND = MediaStore.Images.Thumbnails.MINI_KIND;
 
-    public static int DRAWABLE = R.drawable.spinner_black_76;
+    public static int DRAWABLE = R.drawable.icon_image_normal;
 
     public ImageAdapter(Context context, Cursor c) {
         this(context, c, true);
