@@ -1,1 +1,1 @@
-include ':recentimagesapp', ':recentimages'
+include ':app', ':recentimages'
