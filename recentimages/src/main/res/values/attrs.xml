@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
     <!-- Specifies how to place the content of an object, both
          on the x- and y-axis, within the object itself. -->
@@ -117,5 +116,4 @@
         </attr>
         <attr name="gravity" />
     </declare-styleable>
-    
 </resources>
