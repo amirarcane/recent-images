@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-import com.amirarcane.recentimages.thumbnailOptions.ImageAdapter;
-
 /**
  * Created by Arcane on 10/30/15 AD.
  */
@@ -41,10 +39,6 @@ public class RecentImages {
 		return mAdapter;
 	}
 
-	public void cleanupCache() {
-		ImageAdapter.cleanupCache();
-	}
-
 	public void setDrawable(int drawable) {
 		ImageAdapter.DRAWABLE = drawable;
 	}
@@ -68,5 +62,4 @@ public class RecentImages {
 	public void setKind(int kind) {
 		ImageAdapter.KIND = kind;
 	}
-
 }
