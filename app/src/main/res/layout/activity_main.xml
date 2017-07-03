@@ -54,8 +54,13 @@
 
         <com.amirarcane.recentimagesapp.CustomButton
             style="@style/CustomButtonStyle"
-            android:id="@+id/button"
-            android:text="Choose Image"/>
+            android:id="@+id/btn1"
+            android:text="1 Row"/>
+
+        <com.amirarcane.recentimagesapp.CustomButton
+            style="@style/CustomButtonStyle"
+            android:id="@+id/btn2"
+            android:text="2 Rows"/>
 
         <ImageView
             android:id="@+id/imageView"

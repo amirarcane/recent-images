@@ -11,16 +11,7 @@ public class RecentImages {
 
 	public static final String ASCENDING = " ASC";
 	public static final String DESCENDING = " DESC";
-	public static final String DESCRIPTION = "description";
-	public static final String PICASA_ID = "picasa_id";
-	public static final String IS_PRIVATE = "isprivate";
-	public static final String LATITUDE = "latitude";
-	public static final String LONGITUDE = "longitude";
 	public static final String DATE_TAKEN = "datetaken";
-	public static final String ORIENTATION = "orientation";
-	public static final String MINI_THUMB_MAGIC = "mini_thumb_magic";
-	public static final String BUCKET_ID = "bucket_id";
-	public static final String BUCKET_DISPLAY_NAME = "bucket_display_name";
 
 	public ImageAdapter getAdapter(Context context) {
 		return getAdapter(context, DATE_TAKEN, DESCENDING);
@@ -53,10 +44,6 @@ public class RecentImages {
 
 	public void setPadding(int padding) {
 		ImageAdapter.IMAGE_PADDING = padding;
-	}
-
-	public void setSize(int size) {
-		ImageAdapter.IN_SAMPLE_SIZE = size;
 	}
 
 	public void setKind(int kind) {

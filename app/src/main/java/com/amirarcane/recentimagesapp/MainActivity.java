@@ -8,7 +8,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -52,16 +52,18 @@ public class MainActivity extends AppCompatActivity {
             CheckPermissions();
         }
 
-        final View bottomSheet = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
+        cr = this.getContentResolver();
+        mImage = (ImageView) findViewById(R.id.imageView);
 
+        //Initialize Recent Images Dialogue Popup.
+        final View bottomSheet = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
         final Dialog mBottomSheetDialog = new Dialog(this, R.style.MaterialDialogSheet);
         mBottomSheetDialog.setContentView(bottomSheet);
         mBottomSheetDialog.setCancelable(true);
         mBottomSheetDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         mBottomSheetDialog.getWindow().setGravity(Gravity.BOTTOM);
 
-        cr = this.getContentResolver();
-
+        //Initialize Recent Images Menu Actions.
         LinearLayout layoutCamera = (LinearLayout) bottomSheet.findViewById(R.id.btn_camera);
         LinearLayout layoutGallery = (LinearLayout) bottomSheet.findViewById(R.id.btn_gallery);
         layoutCamera.setOnClickListener(new View.OnClickListener() {
@@ -82,16 +84,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mImage = (ImageView) findViewById(R.id.imageView);
-        final TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
-
-        CustomButton button = (CustomButton) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        CustomButton btn1 = (CustomButton) findViewById(R.id.btn1);
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mBottomSheetDialog.show();
 
-                final RecentImages ri = new RecentImages();
+                TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
+                gridview.getLayoutParams().height = Units.dpToPx(mContext, 100);
+                gridview.setNumRows(1);
+
+                RecentImages ri = new RecentImages();
+                ri.setHeight(100);
+                ri.setWidth(100);
                 ImageAdapter adapter = ri.getAdapter(MainActivity.this);
 
                 gridview.setAdapter(adapter);
@@ -102,6 +106,35 @@ public class MainActivity extends AppCompatActivity {
                         mBottomSheetDialog.dismiss();
                     }
                 });
+
+                mBottomSheetDialog.show();
+            }
+        });
+
+        CustomButton btn2 = (CustomButton) findViewById(R.id.btn2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TwoWayGridView gridview = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
+                gridview.getLayoutParams().height = Units.dpToPx(mContext, 200);
+                gridview.setNumRows(2);
+
+                RecentImages ri = new RecentImages();
+                ri.setHeight(100);
+                ri.setWidth(100);
+                ImageAdapter adapter = ri.getAdapter(MainActivity.this);
+
+                gridview.setAdapter(adapter);
+                gridview.setOnItemClickListener(new TwoWayAdapterView.OnItemClickListener() {
+                    public void onItemClick(TwoWayAdapterView parent, View v, int position, long id) {
+                        imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                        Glide.with(mContext).load(imageUri).into(mImage);
+                        mBottomSheetDialog.dismiss();
+                    }
+                });
+
+                mBottomSheetDialog.show();
             }
         });
     }

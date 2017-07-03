@@ -36,11 +36,9 @@ public class ImageAdapter extends CursorAdapter {
     public static final int IMAGE_DATE_COLUMN = 3;
     public static final int IMAGE_TYPE_COLUMN = 4;
 
-	public static float IMAGE_WIDTH = 70;
-	public static float IMAGE_HEIGHT = 70;
+	public static float IMAGE_WIDTH = 100;
+	public static float IMAGE_HEIGHT = 100;
 	public static float IMAGE_PADDING = 0;
-
-	private static Options sBitmapOptions = new Options();
 
 	private final Context mContext;
 	private float mScale;
@@ -49,7 +47,6 @@ public class ImageAdapter extends CursorAdapter {
 	private int mImagePadding;
 
 	public ImageView.ScaleType SCALE_TYPE = ImageView.ScaleType.CENTER_CROP;
-	public static int IN_SAMPLE_SIZE = 2;
 	public static int KIND = MediaStore.Images.Thumbnails.MINI_KIND;
 
 	public static int DRAWABLE = R.drawable.spinner_black_76;
@@ -65,7 +62,6 @@ public class ImageAdapter extends CursorAdapter {
         mImageWidth = (int) (IMAGE_WIDTH * mScale);
         mImageHeight = (int) (IMAGE_HEIGHT * mScale);
         mImagePadding = (int) (IMAGE_PADDING * mScale);
-        sBitmapOptions.inSampleSize = IN_SAMPLE_SIZE;
 	}
 
 	@Override
