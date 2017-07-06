@@ -17,11 +17,11 @@
 		<item name="android:windowIsFloating">false</item>
 		<item name="android:windowAnimationStyle">@style/MaterialDialogSheetAnimation</item>
 	</style>
-
 	<style name="MaterialDialogSheetAnimation">
 		<item name="android:windowEnterAnimation">@anim/popup_show</item>
 		<item name="android:windowExitAnimation">@anim/popup_hide</item>
 	</style>
+
     <style name="CustomButtonStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
