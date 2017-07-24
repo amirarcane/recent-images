@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private ContentResolver contentResolver;
     private File photoFile = null;
+    private RecentImages recentImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imageView);
         final TwoWayGridView twoWayGridView = (TwoWayGridView) bottomSheet.findViewById(R.id.gridview);
         Button button = (Button) findViewById(R.id.choose);
-        Button clearCache = (Button) findViewById(R.id.clearCache);
 
         final Dialog mBottomSheetDialog = new Dialog(this, R.style.MaterialDialogSheet);
         mBottomSheetDialog.setContentView(bottomSheet);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         menu.setLayoutManager(new LinearLayoutManager(this));
         menu.setAdapter(menuAdapter);
 
-        final RecentImages recentImages = new RecentImages();
+        recentImages = new RecentImages();
         final ImageAdapter adapter = recentImages.getAdapter(MainActivity.this);
 
         menu.addOnItemTouchListener(new RecyclerItemClickListener(this, menu, new RecyclerItemClickListener.OnItemClickListener() {
@@ -141,12 +141,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        clearCache.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recentImages.cleanupCache();
-            }
-        });
     }
 
     private Drawable getRotateDrawable(final Bitmap b, final float angle) {
@@ -247,4 +241,9 @@ public class MainActivity extends AppCompatActivity {
         return orientation;
     }
 
+    @Override
+    protected void onDestroy() {
+        recentImages.cleanupCache();
+        super.onDestroy();
+    }
 }

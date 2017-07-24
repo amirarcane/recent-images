@@ -8,7 +8,7 @@ Simple way to get all images of device based on date taken, name, id and other c
 
 ![Screenshots](https://raw.githubusercontent.com/amirarcane/recent-images/master/demo/Screenshot_2015-10-31-15-40-49.png)
 
-If you Watch this repository, GitHub will send you an email every time I publish an update.
+Watching this repository will allow GitHub to email you whenever I publish a release.
 
 ---
 # Gradle Dependency
@@ -18,8 +18,6 @@ Add this line to your `build.gradle` project
 ```java
 compile 'com.amirarcane.recent-images:recentimages:1.1.1'
 ```
-
-Watching this repository will allow GitHub to email you whenever I publish a release.
 ---
 # Usage
 
@@ -29,8 +27,12 @@ Just add these lines to your class, that's it.
 RecentImages recentImages = new RecentImages();
 ImageAdapter adapter = recentImages.getAdapter(MainActivity.this);
 ```
-`recentImages.getAdapter()` method returns an adapter that you can easily set it as your gridView adapter. By default it returns device pictures
-based on `Date_Taken` and `Descending` order, for changing them see [Customization](https://github.com/amirarcane/recent-images/#customization)
+`recentImages.getAdapter()` method returns an adapter that you can easily set it as your gridView adapter. By default it returns device pictures based on `Date_Taken` and `Descending` order, for changing them see [Customization](https://github.com/amirarcane/recent-images/#customization)
+
+Use `recentImages.cleanupCache()` to clean the cache.
+It removes all the callbacks from the drawables stored in the memory cache.
+This method must be called from the onDestroy() method of any activity using the cached drawables.
+Failure to do so will result in the entire activity being leaked.
 
 You can use regular gridView but if you want to use it exactly like above picture you need horizontal gridView.
 I used jess-anders/two-way-gridView in this library. All you have to do is set below code in your xml instead of regular gridView:
@@ -41,7 +43,7 @@ I used jess-anders/two-way-gridView in this library. All you have to do is set b
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E8E8E8"
     android:id="@+id/gridview"
-    android:layout_width="fill_parent" 
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     app:columnWidth="70dp"
     app:rowHeight="70dp"
@@ -52,11 +54,6 @@ I used jess-anders/two-way-gridView in this library. All you have to do is set b
     app:gravity="center"/>
 
 ```
-
-Use `recentImages.cleanupCache()` to clean the cache.
-It removes all the callbacks from the drawables stored in the memory cache.
-This method must be called from the onDestroy() method of any activity using the cached drawables.
-Failure to do so will result in the entire activity being leaked.
 ---
 # Customization
 
