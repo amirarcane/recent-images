@@ -11,12 +11,6 @@ Simple way to get all images of device based on date taken, name, id and other c
 If you Watch this repository, GitHub will send you an email every time I publish an update.
 
 ---
-# Sample Project
-You can download the latest sample APK from this repo here: https://github.com/amirarcane/recent-images/blob/master/sample/sample.apk
-
-Watching this repository will allow GitHub to email you whenever I publish a release.
-
----
 # Gradle Dependency
 
 Add this line to your `build.gradle` project
@@ -24,20 +18,22 @@ Add this line to your `build.gradle` project
 ```java
 compile 'com.amirarcane.recent-images:recentimages:1.1.1'
 ```
+
+Watching this repository will allow GitHub to email you whenever I publish a release.
 ---
 # Usage
 
 Just add these lines to your class, that's it.
 
 ```java
-RecentImages ri = new RecentImages();
-ImageAdapter adapter = ri.getAdapter(MainActivity.this);
+RecentImages recentImages = new RecentImages();
+ImageAdapter adapter = recentImages.getAdapter(MainActivity.this);
 ```
-`ri.getAdapter()` method reurns an adapter that you can easily set it as your gridview adapter. By default it returns device pictures
+`recentImages.getAdapter()` method returns an adapter that you can easily set it as your gridView adapter. By default it returns device pictures
 based on `Date_Taken` and `Descending` order, for changing them see [Customization](https://github.com/amirarcane/recent-images/#customization)
 
-You can use regular gridview but if you want to use it exactly like above picture you need horizontal gridview.
-I used jess-anders/two-way-gridview in this library. All you have to do is set below code in your xml instaed of regular gridview:
+You can use regular gridView but if you want to use it exactly like above picture you need horizontal gridView.
+I used jess-anders/two-way-gridView in this library. All you have to do is set below code in your xml instead of regular gridView:
 
 ```xml
 
@@ -56,6 +52,11 @@ I used jess-anders/two-way-gridview in this library. All you have to do is set b
     app:gravity="center"/>
 
 ```
+
+Use `recentImages.cleanupCache()` to clean the cache.
+It removes all the callbacks from the drawables stored in the memory cache.
+This method must be called from the onDestroy() method of any activity using the cached drawables.
+Failure to do so will result in the entire activity being leaked.
 ---
 # Customization
 
@@ -65,7 +66,7 @@ RecentImages class contains some methods for customization:
 
 `getAdapter(Context context, String columns, String sort)` parameter columns filters device images base on date, name, id and etc. parameter sort will sort them based on `Desecnding` or `Ascending` order
 
-`setDrawable(int drawable)` to use an image from you drwable folder before loading of images
+`setDrawable(int drawable)` to use an image from you drawable folder before loading of images
 
 `setHeight(int height)` to set images height (in dp)
 
@@ -73,16 +74,16 @@ RecentImages class contains some methods for customization:
 
 `setPadding(int padding)` to set images padding (in dp)
 
-`setSize(int size)` to set quality of thumbnail images (values are 1, 2, 3, 4. 1 means best quality and high resulotion and 4 means least quality an low resolution)
+`setSize(int size)` to set quality of thumbnail images (values are 1, 2, 3, 4. 1 means best quality and high resolution and 4 means least quality an low resolution)
 
 Here is an example:
 
 ```java
-RecentImages ri = new RecentImages();
+RecentImages recentImages = new RecentImages();
 ri.setHeight(70);
 ri.setWidth(70);
-ImageAdapter adapter = ri.getAdapter(MainActivity.this, ri.LATITUDE, ri.ASCENDING);
-gridview.setAdapter(adapter);
+ImageAdapter adapter = recentImages.getAdapter(MainActivity.this, ri.LATITUDE, ri.ASCENDING);
+gridView.setAdapter(adapter);
 ```
 
 ---

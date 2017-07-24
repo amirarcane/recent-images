@@ -1,6 +1,8 @@
 <resources>
-	<string name="app_name">Sample</string>
 
-	<string name="hello_world">Hello world!</string>
-	<string name="action_settings">Settings</string>
+    <string name="app_name">Recent Images</string>
+
+    <string name="pleaseEnablePermission">Permission is needed to display images.</string>
+    <string name="selectPhoto">Select Image</string>
+
 </resources>
