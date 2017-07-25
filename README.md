@@ -16,7 +16,7 @@ Watching this repository will allow GitHub to email you whenever I publish a rel
 Add this line to your `build.gradle` project
 
 ```java
-compile 'com.amirarcane.recent-images:recentimages:1.1.1'
+compile 'com.amirarcane.recent-images:recentimages:2.0.1'
 ```
 ---
 # Usage
@@ -40,11 +40,10 @@ I used jess-anders/two-way-gridView in this library. All you have to do is set b
 ```xml
 
 <com.jess.ui.TwoWayGridView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gridView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#E8E8E8"
-    android:id="@+id/gridview"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
     app:columnWidth="70dp"
     app:rowHeight="70dp"
     app:numColumns="auto_fit"
