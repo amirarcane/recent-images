@@ -1,5 +1,5 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-recent--images-green.svg?style=true)](https://android-arsenal.com/details/1/3622)
-# recent-images
+# Recent Images
 
 Do you noticed the new feature of Telegram or Instagram?! They show your latest images when you try to attach or post a picture.
 So I developed this library the same with lots of customization.
